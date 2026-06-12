@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  img { image-orientation: from-image; }
 
   :root {
     --white:   #F7F5F2;
@@ -161,7 +162,7 @@
     color: var(--muted); font-size: 11px; letter-spacing: 0.1em;
     overflow: hidden;
   }
-  .img-ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-ph img { width: 100%; height: 100%; object-fit: cover; display: block; image-orientation: from-image; }
 
   /* ── HOBBY GRID ── */
   .hobby-grid {
@@ -182,7 +183,7 @@
     color: var(--muted); font-size: 11px; letter-spacing: 0.1em;
     overflow: hidden; border-bottom: 1px solid var(--border);
   }
-  .hb-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hb-photo img { width: 100%; height: 100%; object-fit: cover; display: block; image-orientation: from-image; }
   .hb-info { padding: 1.4rem 1.6rem; }
   .hb-name {
     font-family: 'Cormorant Garamond', serif;
@@ -425,7 +426,7 @@
   <div class="hobby-grid">
 
     <div class="hb">
-      <div class="hb-photo"><img src="images/aquascape.jpg" alt="Aquascape"></div>
+      <div class="hb-photo"><img src="images/aquascape.jpeg" alt="Aquascape"></div>
       <div class="hb-info">
         <p class="hb-name">Aquascaping</p>
         <p class="hb-desc">Building underwater ecosystems. Precision, patience, and living art.</p>
@@ -433,7 +434,7 @@
     </div>
 
     <div class="hb">
-      <div class="hb-photo"><img src="images/plants.jpg" alt="Plants"></div>
+      <div class="hb-photo"><img src="images/plants.JPG" alt="Plants"></div>
       <div class="hb-info">
         <p class="hb-name">Houseplants</p>
         <p class="hb-desc">Propagation, pruning, grounding. My space is never without something alive.</p>
@@ -441,7 +442,7 @@
     </div>
 
     <div class="hb">
-      <div class="hb-photo"><img src="images/drums.jpg" alt="Drums"></div>
+      <div class="hb-photo"><img src="images/drums.JPG" alt="Drums"></div>
       <div class="hb-info">
         <p class="hb-name">Drums &amp; Guitar</p>
         <p class="hb-desc">Worship team, drum corps, private teaching. Rhythm is how I think.</p>
@@ -449,7 +450,7 @@
     </div>
 
     <div class="hb">
-      <div class="hb-photo"><img src="images/gym.jpg" alt="Gym"></div>
+      <div class="hb-photo"><img src="images/gym.png" alt="Gym"></div>
       <div class="hb-info">
         <p class="hb-name">Bodybuilding</p>
         <p class="hb-desc">Early mornings. Structured programming. Discipline away from a screen.</p>
@@ -457,7 +458,7 @@
     </div>
 
     <div class="hb">
-      <div class="hb-photo"><img src="images/badminton.jpg" alt="Badminton"></div>
+      <div class="hb-photo"><img src="images/badminton.jpeg" alt="Badminton"></div>
       <div class="hb-info">
         <p class="hb-name">Badminton</p>
         <p class="hb-desc">Competitive. Club marketing coordinator. Fast, tactical, sharp.</p>
@@ -465,7 +466,7 @@
     </div>
 
     <div class="hb">
-      <div class="hb-photo"><img src="images/garden.jpg" alt="Garden"></div>
+      <div class="hb-photo"><img src="images/garden.JPG" alt="Garden"></div>
       <div class="hb-info">
         <p class="hb-name">Gardening</p>
         <p class="hb-desc">Founder of the Growers Club at Covenant College. Soil and patience.</p>
@@ -473,7 +474,7 @@
     </div>
 
     <div class="hb">
-      <div class="hb-photo"><img src="images/percussion.jpg" alt="Percussion"></div>
+      <div class="hb-photo"><img src="images/percussion.png" alt="Percussion"></div>
       <div class="hb-info">
         <p class="hb-name">Percussion</p>
         <p class="hb-desc">Chapel worship team. 4 years of drum corps. Rhythm as a reset.</p>
@@ -508,7 +509,7 @@
   <div class="gallery">
   <div class="g-cell tall"><img src="images/gallery1.jpg" alt="Gallery 1"></div>
   <div class="g-cell"><img src="images/gallery2.jpg" alt="Gallery 2"></div>
-  <div class="g-cell"><img src="images/gallery3.jpg" alt="Gallery 3"></div>
+  <div class="g-cell"><img src="images/gallery3.jpg" alt="Gallery 3"><!-- REPLACE: swap gallery3.jpg with your new photo --></div>
   <div class="g-cell"><img src="images/gallery4.jpg" alt="Gallery 4"></div>
   <div class="g-cell"><img src="images/gallery5.jpg" alt="Gallery 5"></div>
 </div>
@@ -526,7 +527,7 @@
       <!-- drums -->
       <div class="m-ph"><img src="images/drums2.jpg" alt="Drums"></div>
       <!-- guitar -->
-      <div class="m-ph"><img src="images/guitar.jpg" alt="Guitar"></div>
+      <div class="m-ph"><img src="images/guitar.png" alt="Guitar"></div>
     </div>
   </div>
 </section>
@@ -541,7 +542,7 @@
         <p class="fit-title">Bodybuilding</p>
         <!-- EDIT: update -->
         <p class="fit-body">Early mornings, structured programming, long-term thinking. The gym is where I practise discipline away from a screen.</p>
-        <div class="fit-photo"><img src="images/gym2.jpg" alt="Gym"></div>
+        <div class="fit-photo"><img src="images/gym2.png" alt="Gym"></div>
       </div>
       <div class="fit-card">
         <div class="fit-num">02</div>
@@ -554,7 +555,7 @@
         <div class="fit-num">03</div>
         <p class="fit-title">Consistency</p>
         <p class="fit-body">Both disciplines share the same principle — show up, do the work, repeat. The scoreboard is who you become over time.</p>
-        <div class="fit-photo"><img src="images/action.jpg" alt="Action"></div>
+        <div class="fit-photo"><img src="images/action.png" alt="Action"></div>
       </div>
     </div>
   </div>
