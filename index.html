@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glad Wong | Analyst, Drummer, Bodybuilder</title>
-<meta name="description" content="Glad Wong. MBA candidate and analyst based between New Orleans and Penang. Drummer of 16 years.">
+<title>Glad Wong | Drummer, Bodybuilder, Aquascaper</title>
+<meta name="description" content="Glad Wong, off the clock. Drummer of 16 years, bodybuilder, aquascaper and badminton coach, based between New Orleans and Penang.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -32,19 +32,11 @@
     overflow-x: hidden; overflow-x: clip;
     -webkit-font-smoothing: antialiased;
   }
-  /* texture: faint column lines plus two soft light pools, on their own fixed layer so scrolling never repaints them */
+  /* texture: dotted paper, on a fixed layer behind everything */
   body::before {
     content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; transform: translateZ(0);
-    background-image:
-      linear-gradient(to right, rgba(237,234,228,0.035) 1px, transparent 1px),
-      radial-gradient(ellipse 60% 40% at 85% 0%, rgba(237,234,228,0.06), transparent 70%),
-      radial-gradient(ellipse 50% 40% at 0% 100%, rgba(237,234,228,0.04), transparent 70%);
-    background-size: 25% 100%, 100% 100%, 100% 100%;
-  }
-  /* texture: film grain on the page background only, never over photos or video */
-  body::after {
-    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; transform: translateZ(0);
-    background-image: url('images/web/grain.png?v=3'); background-size: 160px 160px;
+    background-image: radial-gradient(circle, rgba(237,234,228,0.2) 1px, transparent 1.6px);
+    background-size: 24px 24px;
   }
   ::selection { background: var(--accent); color: var(--bg); }
   a { color: inherit; }
@@ -216,8 +208,7 @@
   .stop-when { font-family: var(--serif); font-style: italic; font-size: 19px; margin-bottom: 0.8rem; }
 
   /* ── WORK ── */
-  .work, .lessons { background-image: url('images/web/grain.png?v=3'); background-size: 160px 160px; }
-  .work { background-color: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+  .work { background-color: rgba(237,234,228,0.035); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
   .work .drift { top: 3rem; }
   .work-head { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 5rem; }
   .job { display: grid; grid-template-columns: 70px 300px 1fr; gap: 2.5rem; padding: 3rem 0; border-top: 1px solid var(--line); }
@@ -299,7 +290,7 @@
   .q-attr { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
 
   /* ── LESSONS ── */
-  .lessons { background-color: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .lessons { background-color: rgba(237,234,228,0.035); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .lessons-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 6rem; align-items: start; }
   .soon { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--line); padding: 0.5rem 1.1rem; margin-bottom: 2rem; }
   .soon::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
@@ -444,10 +435,9 @@
   <a class="nav-logo" href="#top">Glad Wong</a>
   <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#projects">Projects</a>
     <a href="#life">Off the clock</a>
     <a href="#lessons">Drum lessons</a>
+    <a href="#work">By day</a>
   </div>
   <a href="#contact" class="btn btn--solid nav-cta">Contact</a>
 </nav>
@@ -455,8 +445,8 @@
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-top">
-    <p class="hero-eyebrow">Analyst · Drummer · Bodybuilder</p>
-    <p class="hero-tag">Analyst by profession. Drummer since I was eight.</p>
+    <p class="hero-eyebrow">Drummer · Bodybuilder · Aquascaper</p>
+    <p class="hero-tag">Strategy by day. Drummer since I was eight.</p>
   </div>
 
   <div class="hero-layer hero-layer--solid">
@@ -473,7 +463,7 @@
     <span class="hero-scroll">Scroll down</span>
     <div class="hero-chips">
       <span>New Orleans, LA &amp; Penang, MY</span>
-      <span>MBA Candidate · CGPA 3.83</span>
+      <span>Grade 8 · Rockschool drums</span>
       <span>16 years on the drums</span>
     </div>
   </div>
@@ -482,8 +472,8 @@
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
-    <span>SQL</span><span>Drums</span><span>Python</span><span>Aquascaping</span><span>Tableau</span><span>Bodybuilding</span><span>Power BI</span><span>Badminton</span><span>Excel &amp; VBA</span><span>Guitar</span>
-    <span>SQL</span><span>Drums</span><span>Python</span><span>Aquascaping</span><span>Tableau</span><span>Bodybuilding</span><span>Power BI</span><span>Badminton</span><span>Excel &amp; VBA</span><span>Guitar</span>
+    <span>Drums</span><span>Aquascaping</span><span>Bodybuilding</span><span>Badminton</span><span>Guitar</span><span>Houseplants</span><span>Cajon</span><span>Coaching</span>
+    <span>Drums</span><span>Aquascaping</span><span>Bodybuilding</span><span>Badminton</span><span>Guitar</span><span>Houseplants</span><span>Cajon</span><span>Coaching</span>
   </div>
 </div>
 
@@ -492,7 +482,7 @@
   <div class="wrap">
     <p class="label"><b>01</b>About<span class="rule"></span></p>
     <!-- EDIT: opening statement -->
-    <p class="statement" data-scrub-words>I'm Glad. I turn messy data into decisions people can actually use. The rest of the time I'm behind a drum kit, under a barbell, or elbow deep in a fish tank.</p>
+    <p class="statement" data-scrub-words>I'm Glad. By day I make businesses run better. The rest of the time I'm behind a drum kit, under a barbell, or elbow deep in a fish tank.</p>
 
     <div class="about-grid">
       <div class="about-photo">
@@ -511,134 +501,10 @@
     </div>
 
     <div class="stats" data-stagger>
-      <div class="stat"><div class="stat-n" data-count="3.83">3.83</div><div class="stat-l">MBA CGPA</div></div>
       <div class="stat"><div class="stat-n" data-count="16">16</div><div class="stat-l">Years on the drums</div></div>
-      <div class="stat"><div class="stat-n" data-count="24">24</div><div class="stat-l">Group projects led</div></div>
+      <div class="stat"><div class="stat-n" data-count="8">8</div><div class="stat-l">Rockschool grade</div></div>
+      <div class="stat"><div class="stat-n" data-count="5">5</div><div class="stat-l">Places I've called home</div></div>
       <div class="stat"><div class="stat-n" data-count="3">3</div><div class="stat-l">Languages, fluently</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<section class="work" id="work">
-  <div class="wrap">
-    <p class="label"><b>02</b>Work<span class="rule"></span></p>
-    <div class="work-head">
-      <h2 class="h2" data-split>Where I've <em>done the work.</em></h2>
-      <p class="body" data-fade>I build pipelines, write the queries, and then explain what the numbers mean to the people who have to act on them. That last part is the one I care about most.</p>
-    </div>
-
-    <div class="job" data-fade>
-      <div class="job-n">01</div>
-      <div><p class="job-co">BlueCross BlueShield of Tennessee</p><p class="job-when">June 2024 to June 2025 · Chattanooga</p>
-        <div class="fig" data-fade aria-hidden="true"><svg viewBox="0 0 300 104">
-          <rect class="s" x="0.5" y="18" width="84" height="34" stroke-dasharray="4 3"/><text x="42" y="39" text-anchor="middle">MANUAL RUN</text>
-          <path class="s" d="M88 35h14m-5-4 5 4-5 4"/>
-          <rect class="s" x="106" y="18" width="88" height="34"/><text x="150" y="39" text-anchor="middle">VBA PIPELINE</text>
-          <path class="s" d="M198 35h14m-5-4 5 4-5 4"/>
-          <rect class="f" x="216" y="18" width="83.5" height="34"/><text class="inv" x="258" y="39" text-anchor="middle">DAILY REPORTS</text>
-          <text x="0" y="84">5 YEARS OF DATA · ABOUT 250 CLIENTS</text>
-        </svg></div>
-      </div>
-      <div>
-        <p class="job-role">Information Delivery Intern</p>
-        <p class="body">Daily reporting used to be a manual, one at a time job. I built a VBA pipeline, with some AI assisted scripting, that took over the run. I also wrote the SQL and SAS behind a director's monthly reports, pulling from five years of financial, clinical, and member data, and went through prescription data for about 250 clients to find where costs could come down.</p>
-        <div class="tools"><span class="sk">SQL</span><span class="sk">SAS</span><span class="sk">Excel &amp; VBA</span><span class="sk">Tableau</span><span class="sk">DBeaver</span></div>
-      </div>
-    </div>
-    <div class="job" data-fade>
-      <div class="job-n">02</div>
-      <div><p class="job-co">Covenant College</p><p class="job-when">Aug 2023 to May 2024 · Georgia</p>
-        <div class="fig" data-fade aria-hidden="true"><svg viewBox="0 0 300 104">
-          <rect class="s" x="0.5" y="30" width="62" height="50"/><rect class="f" x="78" y="20" width="62" height="60"/>
-          <path class="s" d="M0 80.5h150"/>
-          <text x="31" y="96" text-anchor="middle">BEFORE</text><text x="109" y="96" text-anchor="middle">CLASS OF 2028</text>
-          <text class="big" x="170" y="58">+20%</text><text x="170" y="76">BUSINESS MAJORS</text>
-        </svg></div>
-      </div>
-      <div>
-        <p class="job-role">Teacher's Assistant, Business Department</p>
-        <p class="body">I ran the department's advertising and produced a sizzle reel for its events. Business major enrollment for the class of 2028 went up 20%. I also ran the interviews and surveys that led faculty to add new courses, including Digital Marketing, and tutored accounting, Excel, and finance.</p>
-        <div class="tools"><span class="sk">Market research</span><span class="sk">Advertising</span><span class="sk">Tutoring</span></div>
-      </div>
-    </div>
-    <div class="job" data-fade>
-      <div class="job-n">03</div>
-      <div><p class="job-co">Third Millennium Ministries</p><p class="job-when">June to Aug 2023 · Florida (Hybrid)</p>
-        <div class="fig" data-fade aria-hidden="true"><svg viewBox="0 0 300 104">
-          <g class="s"><rect x="0.5" y="18" width="34" height="44"/><path d="M7 30h20M7 38h20M7 46h12"/><rect x="44" y="18" width="34" height="44"/><path d="M51 30h20M51 38h20M51 46h12"/><rect x="88" y="18" width="34" height="44"/><path d="M95 30h20M95 38h20M95 46h12"/>
-          <path d="M132 40h22m-5-4 5 4-5 4"/></g>
-          <rect class="f" x="164" y="18" width="80" height="44"/><text class="big inv" x="204" y="51" text-anchor="middle">ROI</text>
-          <text x="0" y="84">3 YEARS OF REPORTS · ONE SET OF NUMBERS</text>
-        </svg></div>
-      </div>
-      <div>
-        <p class="job-role">Advancement, Generosity &amp; Marketing Intern</p>
-        <p class="body">I read three years of global ministry reports so the VP didn't have to, then turned them into growth and ROI numbers for fundraising strategy. I managed the social accounts too.</p>
-        <div class="tools"><span class="sk">ROI analysis</span><span class="sk">Reporting</span><span class="sk">Social media</span></div>
-      </div>
-    </div>
-
-    <div class="lead">
-      <div data-fade>
-        <h3>Class Monitor &amp; Project Leader</h3>
-        <p class="job-when">Putra Business School · Sep 2025 to present</p>
-        <p class="body" style="margin-top:0.8rem">24 group projects across 3 trimesters. I set the timelines, split the work, and compiled the final reports.</p>
-      </div>
-      <div data-fade>
-        <h3>Marketing &amp; Business Operations</h3>
-        <p class="job-when">Chattanooga Badminton Club · May 2023 to present</p>
-        <p class="body" style="margin-top:0.8rem">I run the club's advertising and operations. Most recently I designed and sold 30 Chatt Smash 2026 competition shirts, from the design to the supplier order to delivery.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="wrap">
-    <p class="label"><b>03</b>Projects<span class="rule"></span></p>
-    <h2 class="h2" data-split>Built on <em>my own time.</em></h2>
-    <div class="pj-grid">
-      <article class="pj" data-fade>
-        <!-- the dashboard screenshot and demo come from this project's GitHub repo -->
-        <div class="ph pj-media" data-video="videos/pj-dashboard.mp4"><img src="images/web/pj-dashboard.jpg" alt="Power BI dashboard ranking drugs by supply risk score" loading="lazy" decoding="async"></div>
-        <div class="pj-n">01</div>
-        <h3 class="pj-title">Hospital Drug Supply Risk &amp; Inventory Planner</h3>
-        <p class="pj-stack">Python · DuckDB · Power BI</p>
-        <p class="body">I wanted to know which drugs a hospital should actually worry about running out of. So I pulled real FDA shortage records, CDC seasonal data, and de-identified hospital prescriptions into one risk score, with a Power BI dashboard that recommends safety stock and reorder points.</p>
-        <p class="body">Halfway through I found a schema bug that had quietly zeroed out seasonal risk for 4 categories. Fixing it changed the rankings.</p>
-        <div class="pj-num"><div><b>1,500+</b><span>Real records</span></div><div><b>24</b><span>Drug categories</span></div><div><b>3</b><span>Data sources</span></div></div>
-        <a class="btn" href="https://github.com/gladwong/hospital-drug-supply-risk-planner" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
-      <article class="pj" data-fade>
-        <div class="pj-media pj-chart" role="img" aria-label="Chart: the single-split backtest showed returns of plus 30 to plus 60 percent; walk-forward testing showed minus 8 to minus 13 percent"><svg viewBox="0 0 640 360">
-          <text x="32" y="34">RETURNS: WHAT THE BACKTEST SAID VS WHAT HELD UP</text>
-          <g class="s" opacity="0.35"><path d="M96 86h512M96 164h512"/></g>
-          <text x="84" y="90" text-anchor="end">+60%</text><text x="84" y="168" text-anchor="end">+30%</text><text x="84" y="246" text-anchor="end">0</text>
-          <path class="s" d="M96 242.500h512"/>
-          <rect class="f" x="170" y="86" width="150" height="78"/>
-          <text class="big" x="245" y="74" text-anchor="middle">+30% to +60%</text>
-          <text x="245" y="298" text-anchor="middle">SINGLE-SPLIT BACKTEST</text>
-          <rect class="s hatch" x="390.500" y="263" width="150" height="13"/>
-          <text class="big" x="465" y="318" text-anchor="middle">-8% to -13%</text>
-          <text x="465" y="338" text-anchor="middle">WALK-FORWARD TEST</text>
-        </svg></div>
-        <div class="pj-n">02</div>
-        <h3 class="pj-title">Algorithmic Intraday Trading System</h3>
-        <p class="pj-stack">Python · Robinhood API</p>
-        <p class="body">A trading system with live market data, automated orders, and several strategies. Nothing touches real money until it gets through paper trading with daily loss limits and position size caps.</p>
-        <p class="body">My first backtests said +30% to +60%. Walk-forward testing said minus 8% to minus 13%. I believed the second one and rebuilt it.</p>
-        <div class="pj-num"><div><b>30+</b><span>Tickers tracked</span></div><div><b>89%</b><span>Did better on one strategy</span></div></div>
-        <a class="btn" href="https://github.com/gladwong/quant-trading-bot" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
-    </div>
-
-    <div class="skills">
-      <p class="label" style="margin:0.4rem 0 0">Toolbox</p>
-      <div class="tools" data-stagger style="margin:0">
-        <a class="sk" href="#projects">SQL</a><a class="sk" href="#projects">Python</a><a class="sk" href="#projects">Power BI</a><span class="sk">Excel &amp; VBA</span><span class="sk">Tableau</span><span class="sk">SAS</span><span class="sk">DBeaver</span><span class="sk">Financial Modelling</span><span class="sk">Forecasting</span><span class="sk">Strategic Planning</span><span class="sk">Project Coordination</span><span class="sk">Digital Marketing</span><span class="sk">HubSpot Certified</span>
-      </div>
     </div>
   </div>
 </section>
@@ -647,7 +513,7 @@
 <section class="life" id="life">
   <div class="wrap">
     <div class="life-head">
-      <p class="label"><b>04</b>Off the clock<span class="rule"></span></p>
+      <p class="label"><b>02</b>Off the clock<span class="rule"></span></p>
       <h2 class="h2" data-split>Hobbies that <em>keep me sharp.</em></h2>
     </div>
 
@@ -736,7 +602,7 @@
         <p class="label">Sixteen years in</p>
         <h2 class="h2">Keep scrolling. <em>I'll keep playing.</em></h2>
       </div>
-      <p class="reel-hint">Scroll to play ↓</p>
+      <p class="reel-hint">Keep scrolling ↓</p>
     </div>
     <span class="reel-bar"></span>
   </div>
@@ -746,7 +612,7 @@
 <section class="frames" id="frames">
   <div class="wrap frames-head">
     <div>
-      <p class="label" style="margin-bottom:1.5rem"><b>05</b>Life in frames</p>
+      <p class="label" style="margin-bottom:1.5rem"><b>03</b>Life in frames</p>
       <h2 class="h2" data-split>Proof I go <em>outside.</em></h2>
     </div>
     <p class="frames-hint">Keep scrolling →</p>
@@ -763,7 +629,7 @@
 <!-- LESSONS -->
 <section class="lessons" id="lessons">
   <div class="wrap">
-    <p class="label"><b>06</b>Drum lessons<span class="rule"></span></p>
+    <p class="label"><b>04</b>Drum lessons<span class="rule"></span></p>
     <div class="lessons-grid">
       <div>
         <p class="soon" data-fade>Opening soon</p>
@@ -794,11 +660,28 @@
   </div>
 </section>
 
+<!-- AT WORK: one short block. The full history lives on LinkedIn. -->
+<section class="work" id="work">
+  <div class="wrap">
+    <p class="label"><b>05</b>By day<span class="rule"></span></p>
+    <div class="work-head" style="margin-bottom:0;align-items:start">
+      <h2 class="h2" data-split>Meanwhile, <em>at work.</em></h2>
+      <div>
+        <p class="job-role" data-fade>MBA | Business Systems Operations &amp; Strategic Project Management</p>
+        <!-- EDIT: work summary -->
+        <p class="body" data-fade>This site is about who I am off the clock. At work I optimise how a business runs and see strategy through to delivery. I look for the slow, manual parts of an operation and rebuild them so they hold up.</p>
+        <p class="body" data-fade>The full history, projects included, is on LinkedIn.</p>
+        <a class="btn" data-fade style="margin-top:2rem" href="https://linkedin.com/in/gladwong" target="_blank" rel="noopener">See my work on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap contact-grid">
     <div>
-      <p class="label"><b>07</b>Contact<span class="rule"></span></p>
+      <p class="label"><b>06</b>Contact<span class="rule"></span></p>
       <h2 class="c-h" data-split>LET'S <em>talk.</em></h2>
       <p class="body" data-fade style="margin-top:2rem">Hiring, collaborating, or you just want to argue about snare tuning. All three work.</p>
       <ul class="c-list" data-stagger>
@@ -859,32 +742,42 @@
     });
   });
 
-  /* videos: layer a muted clip over a frame's photo once it has loaded */
-  function attachVideo(frame, onReady) {
+  /* videos: layer a muted clip over a frame's photo. Phones only start loading a clip
+     when play() is called, so clips are started directly rather than waiting for data. */
+  var touch = window.matchMedia('(pointer: coarse)').matches;
+  var clips = [];
+  function attachVideo(frame, loop) {
     var v = document.createElement('video');
-    v.muted = true; v.playsInline = true; v.preload = 'auto';
-    v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-    v.addEventListener('loadeddata', function () { frame.classList.add('has-video'); onReady(v); }, { once: true });
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = loop; v.preload = 'auto';
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+    var show = function () { frame.classList.add('has-video'); };
+    v.addEventListener('loadeddata', show);
+    v.addEventListener('playing', show);
     v.addEventListener('error', function () { v.remove(); });
     v.src = frame.dataset.video;
     frame.querySelector('img').after(v);
+    return v;
   }
-  /* looping clips: load when close, play only while on screen */
+  function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  /* looping clips: attach when close, play only while on screen */
   gsap.utils.toArray('.ph[data-video]').forEach(function (frame) {
-    var clip = null, onScreen = false;
-    ScrollTrigger.create({
-      trigger: frame, start: 'top 150%', once: true,
-      onEnter: function () { attachVideo(frame, function (v) { clip = v; v.loop = true; if (onScreen) v.play().catch(function () {}); }); }
-    });
+    var state = { clip: null, on: false };
+    clips.push(state);
+    var near = function () { if (!state.clip) { state.clip = attachVideo(frame, true); if (state.on) tryPlay(state.clip); } };
+    ScrollTrigger.create({ trigger: frame, start: 'top 160%', end: 'bottom -60%', onEnter: near, onEnterBack: near });
     ScrollTrigger.create({
       trigger: frame, start: 'top bottom', end: 'bottom top',
       onToggle: function (self) {
-        onScreen = self.isActive;
-        if (!clip) return;
-        if (onScreen) clip.play().catch(function () {}); else clip.pause();
+        state.on = self.isActive;
+        if (!state.clip) return;
+        if (state.on) tryPlay(state.clip); else state.clip.pause();
       }
     });
   });
+  /* if a phone blocks autoplay (for example in low power mode), the first tap starts the clips on screen */
+  document.addEventListener('touchstart', function () {
+    clips.forEach(function (c) { if (c.clip && c.on && c.clip.paused) tryPlay(c.clip); });
+  }, { passive: true });
 
   /* nav: solid after the top, hides on the way down, returns on the way up */
   ScrollTrigger.create({
@@ -1008,15 +901,27 @@
   var reelFrame = document.querySelector('.reel-frame');
   var reelClip = null;
   var playhead = { t: 0 };
+  var reelState = { clip: null, on: false };
+  clips.push(reelState);
   ScrollTrigger.create({
     trigger: reel, start: 'top 250%', once: true,
-    onEnter: function () { attachVideo(reelFrame, function (v) { reelClip = v; v.pause(); }); }
+    onEnter: function () {
+      reelClip = attachVideo(reelFrame, touch);
+      reelState.clip = reelClip;
+      /* desktop: prime the clip so it can be scrubbed; touch screens just play it as a loop */
+      if (!touch) { var p = reelClip.play(); if (p && p.then) p.then(function () { reelClip.pause(); }).catch(function () {}); }
+    }
   });
   gsap.timeline({
     scrollTrigger: {
       trigger: reel, start: 'top top', end: '+=180%', pin: true, scrub: true,
+      onToggle: function (self) {
+        reelState.on = touch && self.isActive;
+        if (!touch || !reelClip) return;
+        if (self.isActive) tryPlay(reelClip); else reelClip.pause();
+      },
       onUpdate: function (self) {
-        if (!reelClip || !reelClip.duration) return;
+        if (touch || !reelClip || !reelClip.duration) return;
         gsap.to(playhead, {
           t: self.progress * (reelClip.duration - 0.1), duration: 0.6, ease: 'power3.out', overwrite: true,
           onUpdate: function () { if (!reelClip.seeking) reelClip.currentTime = playhead.t; }
