@@ -297,13 +297,39 @@
   .soon { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--line); padding: 0.5rem 1.1rem; margin-bottom: 2rem; }
   .soon::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: 0.2; } }
+  /* playable groove machine */
   .seq { margin: 3rem 0; border: 1px solid var(--line); padding: 1.4rem; }
+  .seq-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.4rem; margin-bottom: 1.4rem; }
+  .seq-play {
+    font: 500 11px/1 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer;
+    padding: 0.85rem 1.4rem; border: 1px solid var(--accent); background: var(--accent); color: var(--bg);
+    transition: background 0.25s, color 0.25s;
+  }
+  .seq-play::before { content: ''; width: 0; height: 0; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+  .seq-play[aria-pressed="true"] { background: transparent; color: var(--accent); }
+  .seq-play[aria-pressed="true"]::before { width: 8px; height: 8px; border: 0; background: currentColor; }
+  .seq-tempo { display: flex; align-items: center; gap: 0.6rem; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+  .seq-tempo input { width: 110px; accent-color: var(--accent); }
+  .seq-tempo output { color: var(--ink); min-width: 2.2em; text-align: right; }
+  .seq-grooves { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .seq-grooves button {
+    font: 400 10.5px/1 'Inter', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+    padding: 0.5rem 0.8rem; background: transparent; color: var(--dim); border: 1px solid var(--line);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .seq-grooves button:hover, .seq-grooves button.is-on { color: var(--ink); border-color: var(--ink); }
   .seq-row { display: grid; grid-template-columns: 34px repeat(16, 1fr); gap: 5px; align-items: center; margin-bottom: 5px; }
   .seq-row b { font-family: var(--display); font-weight: 400; font-size: 13px; letter-spacing: 0.1em; }
-  .seq-row i { aspect-ratio: 1; border: 1px solid var(--line); }
-  .seq-row i:nth-of-type(4n+1) { border-color: rgba(237,234,228,0.4); }
-  .seq-row i.on { background: rgba(237,234,228,0.28); animation: hit 2.4s steps(1) infinite; }
-  @keyframes hit { 0% { background: var(--ink); transform: scale(1.18); } 7% { background: rgba(237,234,228,0.28); transform: none; } }
+  .seq-row button {
+    aspect-ratio: 1; padding: 0; cursor: pointer; background: transparent;
+    border: 1px solid var(--line); transition: background 0.12s, border-color 0.12s, transform 0.12s;
+  }
+  .seq-row button:nth-of-type(4n+1) { border-color: rgba(237,234,228,0.4); }
+  .seq-row button:hover { border-color: var(--ink); }
+  .seq-row button.on { background: rgba(237,234,228,0.5); }
+  .seq-row button.is-now { border-color: var(--ink); }
+  .seq-row button.on.is-now { background: var(--ink); transform: scale(1.12); }
   .seq-cap { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-top: 1rem; }
   .teach { list-style: none; counter-reset: t; margin: 2.5rem 0 3rem; }
   .teach li { counter-increment: t; display: grid; grid-template-columns: 48px 1fr; padding: 1.1rem 0; border-top: 1px solid var(--line); }
@@ -442,6 +468,9 @@
     .life-media .ph--side { bottom: -2rem; }
     .life-media { margin-bottom: 2rem; }
     .lessons-media .ph--side { left: -0.5rem; }
+    .seq { margin-left: -1.5rem; margin-right: -1.5rem; padding: 1.2rem 0.75rem; border-left: 0; border-right: 0; }
+    .seq-row { grid-template-columns: 26px repeat(16, 1fr); gap: 3px; margin-bottom: 3px; }
+    .seq-tempo input { width: 90px; }
     .lessons-media { margin-bottom: 3rem; }
     .quote { padding: 7rem 0; }
     .foot-row { flex-direction: column; gap: 0.5rem; }
@@ -460,7 +489,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .ticker-inner, .badge svg, .seq-row i.on, .hero-scroll::after, .soon::before, .foot-name::after { animation: none; }
+    .ticker-inner, .badge svg, .hero-scroll::after, .soon::before, .foot-name::after { animation: none; }
   }
 </style>
 </head>
@@ -559,8 +588,8 @@
 
     <div class="life-row">
       <div class="life-media">
-        <div class="ph ph--video" data-wipe data-video="videos/drums-home.mp4"><img src="images/web/v-drums-home.jpg" alt="Glad playing an electronic drum kit at home" loading="lazy" decoding="async"></div>
-        <div class="ph ph--side ph--inset" data-speed="0.6" data-video="videos/guitar.mp4"><img src="images/web/v-guitar.jpg" alt="Glad playing an acoustic guitar" loading="lazy" decoding="async"></div>
+        <div class="ph ph--video" data-wipe data-video="videos/drums-home.mp4?v=3"><img src="images/web/v-drums-home.jpg?v=3" alt="Glad playing an electronic drum kit at home" loading="lazy" decoding="async"></div>
+        <div class="ph ph--side ph--inset" data-speed="0.6" data-video="videos/guitar.mp4?v=3"><img src="images/web/v-guitar.jpg?v=3" alt="Glad playing an acoustic guitar" loading="lazy" decoding="async"></div>
       </div>
       <div>
         <p class="life-n">01 / Music</p>
@@ -582,7 +611,7 @@
         <div class="ph ph--wide" data-wipe><img src="images/web/aqua-7820.jpg" alt="A planted aquarium with driftwood, white sand, and discus fish" loading="lazy" decoding="async"></div>
         <div class="tanks" data-stagger>
           <div class="ph"><img src="images/web/aqua-7816.jpg" alt="A planted tank with mossy rocks and red shrimp" loading="lazy" decoding="async"></div>
-          <div class="ph" data-video="videos/aquascape.mp4"><img src="images/web/v-aquascape.jpg" alt="Goldfish swimming over a rock scape" loading="lazy" decoding="async"></div>
+          <div class="ph" data-video="videos/aquascape.mp4?v=3"><img src="images/web/v-aquascape.jpg?v=3" alt="Goldfish swimming over a rock scape" loading="lazy" decoding="async"></div>
           <div class="ph"><img src="images/web/aqua-7892.jpg" alt="Two ram cichlids close up" loading="lazy" decoding="async"></div>
         </div>
       </div>
@@ -601,7 +630,7 @@
     <div class="life-row">
       <div class="life-media">
         <div class="ph ph--main" data-wipe><img src="images/web/gym.jpg" alt="Glad flexing in dramatic light at the gym" loading="lazy" decoding="async"></div>
-        <div class="ph ph--side" data-speed="0.6" style="aspect-ratio:16/9;width:58%" data-video="videos/gym.mp4"><img src="images/web/v-gym.jpg" alt="Glad pressing dumbbells on a bench" loading="lazy" decoding="async"></div>
+        <div class="ph ph--side" data-speed="0.6" style="aspect-ratio:16/9;width:58%" data-video="videos/gym.mp4?v=3"><img src="images/web/v-gym.jpg?v=3" alt="Glad pressing dumbbells on a bench" loading="lazy" decoding="async"></div>
       </div>
       <div>
         <p class="life-n">03 / Bodybuilding</p>
@@ -615,7 +644,7 @@
     <div class="life-row">
       <div class="life-media">
         <div class="ph ph--main" data-wipe><img src="images/web/badminton.jpg" alt="Glad mid smash on a badminton court" loading="lazy" decoding="async"></div>
-        <div class="ph ph--side" data-speed="0.6" style="aspect-ratio:16/9;width:58%" data-video="videos/badminton.mp4"><img src="images/web/v-badminton.jpg" alt="Glad playing badminton" loading="lazy" decoding="async"></div>
+        <div class="ph ph--side" data-speed="0.6" style="aspect-ratio:16/9;width:58%" data-video="videos/badminton.mp4?v=3"><img src="images/web/v-badminton.jpg?v=3" alt="Glad playing badminton" loading="lazy" decoding="async"></div>
       </div>
       <div>
         <p class="life-n">04 / Badminton</p>
@@ -633,10 +662,10 @@
 
 <!-- REEL: the clip plays forward and backward as you scroll.
      The clip is videos/reel.mp4 (the photo below shows until it loads, or if it is missing).
-     To add a looping clip to ANY photo on the page, add data-video="videos/yourclip.mp4" to its .ph frame. -->
+     To add a looping clip to ANY photo on the page, add data-video="videos/yourclip.mp4?v=3" to its .ph frame. -->
 <section class="reel" id="reel">
-  <div class="reel-frame" data-video="videos/reel.mp4?v=2">
-    <img src="images/web/v-reel.jpg?v=2" alt="" loading="lazy" decoding="async">
+  <div class="reel-frame" data-video="videos/reel.mp4?v=3">
+    <img src="images/web/v-reel.jpg?v=3" alt="" loading="lazy" decoding="async">
     <div class="reel-copy">
       <div>
         <p class="label">Sixteen years in</p>
@@ -677,11 +706,22 @@
         <!-- EDIT: lessons intro -->
         <p class="body" data-fade style="margin-top:2.2rem">I taught drums in Penang before college and I want to do it again. Lessons aren't open yet. If you want to learn, or you want your kid to learn, tell me now and you'll be first on the list.</p>
 
-        <div class="seq" data-fade aria-hidden="true">
-          <div class="seq-row" data-pattern="x.x.x.x.x.x.x.x."><b>HH</b></div>
-          <div class="seq-row" data-pattern="....x.......x..."><b>SN</b></div>
-          <div class="seq-row" data-pattern="x.....x.x.x....."><b>KD</b></div>
-          <p class="seq-cap">The first groove everyone learns. We'd start here.</p>
+        <!-- Groove machine: drum sounds are generated in the browser, no audio files -->
+        <div class="seq" data-fade>
+          <div class="seq-bar">
+            <button type="button" class="seq-play" aria-pressed="false">Play</button>
+            <label class="seq-tempo">Tempo <input type="range" min="60" max="160" step="1" value="92" aria-label="Tempo in beats per minute"><output>92</output> BPM</label>
+            <div class="seq-grooves" role="group" aria-label="Preset grooves">
+              <button type="button" data-groove="rock" class="is-on">Rock</button>
+              <button type="button" data-groove="disco">Disco</button>
+              <button type="button" data-groove="half">Half time</button>
+              <button type="button" data-groove="clear">Clear</button>
+            </div>
+          </div>
+          <div class="seq-row" data-voice="hat"><b>HH</b></div>
+          <div class="seq-row" data-voice="snare"><b>SN</b></div>
+          <div class="seq-row" data-voice="kick"><b>KD</b></div>
+          <p class="seq-cap">The first groove everyone learns. Tap the squares to write your own, then press play.</p>
         </div>
 
         <!-- EDIT: what you plan to teach -->
@@ -693,7 +733,7 @@
         <a class="btn btn--solid" data-fade href="https://wa.me/15042517264?text=Hi%20Glad%2C%20I%27m%20interested%20in%20drum%20lessons." target="_blank" rel="noopener">Join the interest list</a>
       </div>
       <div class="lessons-media">
-        <div class="ph ph--video" data-wipe data-video="videos/lesson-kit.mp4"><img src="images/web/v-lesson-kit.jpg" alt="Hands playing a drum kit, seen from above" loading="lazy" decoding="async"></div>
+        <div class="ph ph--video" data-wipe data-video="videos/lesson-kit.mp4?v=3"><img src="images/web/v-lesson-kit.jpg?v=3" alt="Hands playing a drum kit, seen from above" loading="lazy" decoding="async"></div>
         <div class="ph ph--main" data-wipe style="margin-top:1rem"><img src="images/web/drums2.jpg" alt="Glad sitting at a drum kit, smiling" loading="lazy" decoding="async"></div>
       </div>
     </div>
@@ -705,7 +745,7 @@
   <div class="wrap">
     <p class="label"><b>05</b>By day<span class="rule"></span></p>
     <div class="work-grid">
-      <div class="ph work-media" data-wipe data-video="videos/work-desk.mp4"><img src="images/web/v-work-desk.jpg" alt="Glad's desk with a monitor and plants, then hands typing on a keyboard" loading="lazy" decoding="async"></div>
+      <div class="ph work-media" data-wipe data-video="videos/work-desk.mp4?v=3"><img src="images/web/v-work-desk.jpg?v=3" alt="Glad's desk with a monitor and plants, then hands typing on a keyboard" loading="lazy" decoding="async"></div>
       <div>
         <h2 class="h2" data-split style="margin-bottom:2.4rem">Meanwhile, <em>at work.</em></h2>
         <p class="job-role" data-fade>MBA | Business Systems Operations &amp; Strategic Project Management</p>
@@ -757,14 +797,136 @@
   var nav = document.querySelector('nav');
   var hero = document.querySelector('.hero');
 
-  /* drum grid: build the 16 steps for each row from its pattern */
-  document.querySelectorAll('.seq-row').forEach(function (row) {
-    row.dataset.pattern.split('').forEach(function (ch, i) {
-      var cell = document.createElement('i');
-      if (ch === 'x') { cell.className = 'on'; cell.style.animationDelay = (i * 0.15) + 's'; }
-      row.appendChild(cell);
+  /* groove machine: 16 steps per drum, sounds synthesised with Web Audio */
+  (function () {
+    var box = document.querySelector('.seq');
+    if (!box) return;
+    var GROOVES = {
+      rock:  { hat: 'x.x.x.x.x.x.x.x.', snare: '....x.......x...', kick: 'x.......x.x.....' },
+      disco: { hat: '..x...x...x...x.', snare: '....x.......x...', kick: 'x...x...x...x...' },
+      half:  { hat: 'x.x.x.x.x.x.x.x.', snare: '........x.......', kick: 'x.........x.....' },
+      clear: { hat: '................', snare: '................', kick: '................' }
+    };
+    var NAMES = { hat: 'Hi-hat', snare: 'Snare', kick: 'Kick' };
+    var rows = {};
+    box.querySelectorAll('.seq-row').forEach(function (row) {
+      var voice = row.dataset.voice, cells = [];
+      for (var i = 0; i < 16; i++) {
+        var c = document.createElement('button');
+        c.type = 'button';
+        c.setAttribute('aria-label', NAMES[voice] + ', step ' + (i + 1));
+        c.setAttribute('aria-pressed', 'false');
+        row.appendChild(c);
+        cells.push(c);
+      }
+      rows[voice] = cells;
+      cells.forEach(function (c) {
+        c.addEventListener('click', function () {
+          var on = !c.classList.contains('on');
+          setCell(c, on);
+          markGroove(null);
+          if (on && !playing) { ensureAudio(); sound(voice, ctx.currentTime + 0.01); }
+        });
+      });
     });
-  });
+    function setCell(c, on) { c.classList.toggle('on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+    function load(name) {
+      var g = GROOVES[name];
+      Object.keys(rows).forEach(function (v) { rows[v].forEach(function (c, i) { setCell(c, g[v][i] === 'x'); }); });
+      markGroove(name);
+    }
+    function markGroove(name) {
+      box.querySelectorAll('[data-groove]').forEach(function (b) { b.classList.toggle('is-on', b.dataset.groove === name); });
+    }
+    box.querySelectorAll('[data-groove]').forEach(function (b) { b.addEventListener('click', function () { load(b.dataset.groove); }); });
+    load('rock');
+
+    /* sound */
+    var ctx = null, noise = null, master = null;
+    function ensureAudio() {
+      if (!ctx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        /* lets iPhones play sound even with the ring/silent switch on (iOS 17+) */
+        try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+        ctx = new AC();
+        master = ctx.createGain(); master.gain.value = 0.8; master.connect(ctx.destination);
+        noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+        var d = noise.getChannelData(0);
+        for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      }
+      if (ctx.state === 'suspended') ctx.resume();
+    }
+    function env(g, t, peak, decay) {
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(peak, t + 0.003);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + decay);
+    }
+    function noiseHit(t, type, freq, peak, decay) {
+      var src = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+      src.buffer = noise; f.type = type; f.frequency.value = freq;
+      src.connect(f); f.connect(g); g.connect(master);
+      env(g, t, peak, decay); src.start(t); src.stop(t + decay + 0.05);
+    }
+    function sound(voice, t) {
+      if (!ctx) return;
+      if (voice === 'kick') {
+        var o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(150, t);
+        o.frequency.exponentialRampToValueAtTime(42, t + 0.14);
+        o.connect(g); g.connect(master);
+        env(g, t, 1, 0.42); o.start(t); o.stop(t + 0.5);
+      } else if (voice === 'snare') {
+        noiseHit(t, 'highpass', 1200, 0.6, 0.19);
+        var b = ctx.createOscillator(), bg = ctx.createGain();
+        b.type = 'triangle'; b.frequency.setValueAtTime(190, t);
+        b.connect(bg); bg.connect(master);
+        env(bg, t, 0.45, 0.1); b.start(t); b.stop(t + 0.15);
+      } else {
+        noiseHit(t, 'highpass', 7500, 0.32, 0.05);
+      }
+    }
+
+    /* scheduler: queue notes slightly ahead on the audio clock so timing stays tight */
+    var playBtn = box.querySelector('.seq-play'), tempo = box.querySelector('.seq-tempo input'), out = box.querySelector('.seq-tempo output');
+    var playing = false, step = 0, nextTime = 0, timer = null, visual = [], raf = null, lit = -1;
+    tempo.addEventListener('input', function () { out.textContent = tempo.value; });
+    function schedule() {
+      while (nextTime < ctx.currentTime + 0.12) {
+        Object.keys(rows).forEach(function (v) { if (rows[v][step].classList.contains('on')) sound(v, nextTime); });
+        visual.push({ step: step, time: nextTime });
+        nextTime += 60 / tempo.value / 4;
+        step = (step + 1) % 16;
+      }
+    }
+    function light(i) {
+      if (i === lit) return;
+      Object.keys(rows).forEach(function (v) {
+        if (lit >= 0) rows[v][lit].classList.remove('is-now');
+        if (i >= 0) rows[v][i].classList.add('is-now');
+      });
+      lit = i;
+    }
+    function draw() {
+      while (visual.length && visual[0].time <= ctx.currentTime) light(visual.shift().step);
+      raf = requestAnimationFrame(draw);
+    }
+    function start() {
+      ensureAudio();
+      if (!ctx) return;
+      playing = true; step = 0; visual = [];
+      nextTime = ctx.currentTime + 0.06;
+      schedule(); timer = setInterval(schedule, 25); draw();
+      playBtn.setAttribute('aria-pressed', 'true'); playBtn.textContent = 'Stop';
+    }
+    function stop() {
+      playing = false; clearInterval(timer); cancelAnimationFrame(raf); light(-1);
+      playBtn.setAttribute('aria-pressed', 'false'); playBtn.textContent = 'Play';
+    }
+    playBtn.addEventListener('click', function () { if (playing) stop(); else start(); });
+    document.addEventListener('visibilitychange', function () { if (document.hidden && playing) stop(); });
+  })();
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion || !window.gsap || !window.ScrollTrigger) {
