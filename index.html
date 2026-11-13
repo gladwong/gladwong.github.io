@@ -217,6 +217,8 @@
   .job-when { font-size: 13px; color: var(--dim); }
   .job-role { font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1.2; margin-bottom: 0.9rem; }
   .job .body { max-width: 40rem; }
+  .work-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 6rem; align-items: center; }
+  .work-media { aspect-ratio: 4 / 5; }
   .tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
   .sk { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s; }
   a.sk { border-color: var(--accent); color: var(--accent); }
@@ -421,7 +423,8 @@
     .hero { padding: 5.5rem 1.5rem 1.5rem; }
     .hero-tag, .hero-scroll { display: none; }
     .hero-foot { grid-template-columns: auto 1fr; }
-    .about-grid, .route-grid, .work-head, .lead, .pj-grid, .skills, .life-row, .lessons-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-grid, .route-grid, .work-grid, .work-head, .lead, .pj-grid, .skills, .life-row, .lessons-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .work-media { max-width: 420px; }
     .statement { margin-bottom: 4rem; }
     .badge { right: 4px; bottom: -40px; width: 110px; height: 110px; }
     .stats { grid-template-columns: 1fr 1fr; margin-top: 5rem; }
@@ -701,9 +704,10 @@
 <section class="work" id="work">
   <div class="wrap">
     <p class="label"><b>05</b>By day<span class="rule"></span></p>
-    <div class="work-head" style="margin-bottom:0;align-items:start">
-      <h2 class="h2" data-split>Meanwhile, <em>at work.</em></h2>
+    <div class="work-grid">
+      <div class="ph work-media" data-wipe data-video="videos/work-desk.mp4"><img src="images/web/v-work-desk.jpg" alt="Glad's desk with a monitor and plants, then hands typing on a keyboard" loading="lazy" decoding="async"></div>
       <div>
+        <h2 class="h2" data-split style="margin-bottom:2.4rem">Meanwhile, <em>at work.</em></h2>
         <p class="job-role" data-fade>MBA | Business Systems Operations &amp; Strategic Project Management</p>
         <!-- EDIT: work summary -->
         <p class="body" data-fade>This site is about who I am off the clock. At work I optimise how a business runs and see strategy through to delivery. I look for the slow, manual parts of an operation and rebuild them so they hold up.</p>
