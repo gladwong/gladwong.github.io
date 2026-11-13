@@ -1,0 +1,3 @@
+Drum sounds: SM Drums by the SFZ Instruments project
+https://sfzinstruments.github.io/drums/sm_drums
+Released into the public domain. Single hits trimmed and converted to MP3.

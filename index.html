@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glad Wong | Drummer, Bodybuilder, Aquascaper</title>
-<meta name="description" content="Glad Wong, off the clock. Drummer of 16 years, bodybuilder, aquascaper and badminton coach, based between New Orleans and Penang.">
+<meta name="description" content="Glad Wong, off the clock. Drummer of 16 years, bodybuilder, aquascaper and badminton player, based between New Orleans and Penang.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -86,7 +86,7 @@
     transition: transform 1.3s cubic-bezier(.76,0,.24,1);
   }
   .js .ph[data-wipe].is-open::after { transform: scaleY(0); }
-  .js .work .ph[data-wipe]::after, .js .lessons .ph[data-wipe]::after { background: var(--bg2); }
+  .js .work .ph[data-wipe]::after, .js .kit .ph[data-wipe]::after { background: var(--bg2); }
 
   /* lite mode: switched on automatically if the device can't keep a smooth frame rate */
   .lite body::after, .lite .drift { display: none; }
@@ -103,7 +103,7 @@
   .w > span { display: inline-block; }
 
   .progress {
-    position: fixed; top: 0; left: 0; width: 100%; height: 2px; z-index: 950;
+    position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 950;
     background: var(--accent); transform: scaleX(0); transform-origin: left center; pointer-events: none;
   }
 
@@ -116,7 +116,6 @@
     transition: transform 0.5s cubic-bezier(.2,.7,.2,1), background 0.4s, border-color 0.4s;
   }
   nav.nav--solid { background: rgba(14,14,13,0.94); border-bottom-color: var(--line); }
-  nav.nav--hidden { transform: translateY(-101%); }
   .nav-logo { font-family: var(--display); font-size: 20px; letter-spacing: 0.18em; text-decoration: none; }
   .nav-links { display: flex; gap: 2.4rem; }
   .nav-links a {
@@ -291,11 +290,11 @@
   .q-text { font-family: var(--serif); font-size: clamp(2.2rem, 5.2vw, 5rem); font-weight: 300; font-style: italic; line-height: 1.15; max-width: 16em; margin: 0 auto 2rem; }
   .q-attr { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
 
-  /* ── LESSONS ── */
-  .lessons { background-color: rgba(237,234,228,0.035); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .lessons-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 6rem; align-items: start; }
-  .soon { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--line); padding: 0.5rem 1.1rem; margin-bottom: 2rem; }
-  .soon::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+  /* ── DRUMS ── */
+  .kit { background-color: rgba(237,234,228,0.035); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .kit-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 6rem; align-items: start; }
+  .since { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--line); padding: 0.5rem 1.1rem; margin-bottom: 2rem; }
+  .since::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 50% { opacity: 0.2; } }
   /* playable groove machine */
   .seq { margin: 3rem 0; border: 1px solid var(--line); padding: 1.4rem; }
@@ -331,15 +330,15 @@
   .seq-row button.is-now { border-color: var(--ink); }
   .seq-row button.on.is-now { background: var(--ink); transform: scale(1.12); }
   .seq-cap { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-top: 1rem; }
-  .teach { list-style: none; counter-reset: t; margin: 2.5rem 0 3rem; }
-  .teach li { counter-increment: t; display: grid; grid-template-columns: 48px 1fr; padding: 1.1rem 0; border-top: 1px solid var(--line); }
-  .teach li:last-child { border-bottom: 1px solid var(--line); }
-  .teach li::before { content: '0' counter(t); font-family: var(--display); font-size: 18px; }
-  .teach strong { font-weight: 500; display: block; }
-  .teach span { color: var(--dim); font-size: 14px; }
-  .lessons-media { position: relative; }
-  .lessons-media .ph--main { aspect-ratio: 3 / 4; }
-  .lessons-media .ph--side { position: absolute; left: -4rem; bottom: -3rem; width: 58%; aspect-ratio: 16 / 10; border: 6px solid var(--bg2); z-index: 2; }
+  .habits { list-style: none; counter-reset: t; margin: 2.5rem 0 3rem; }
+  .habits li { counter-increment: t; display: grid; grid-template-columns: 48px 1fr; padding: 1.1rem 0; border-top: 1px solid var(--line); }
+  .habits li:last-child { border-bottom: 1px solid var(--line); }
+  .habits li::before { content: '0' counter(t); font-family: var(--display); font-size: 18px; }
+  .habits strong { font-weight: 500; display: block; }
+  .habits span { color: var(--dim); font-size: 14px; }
+  .kit-media { position: relative; }
+  .kit-media .ph--main { aspect-ratio: 3 / 4; }
+  .kit-media .ph--side { position: absolute; left: -4rem; bottom: -3rem; width: 58%; aspect-ratio: 16 / 10; border: 6px solid var(--bg2); z-index: 2; }
 
   /* ── CONTACT ── */
   .contact-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 6rem; align-items: center; }
@@ -351,55 +350,38 @@
   .c-list a:hover { padding-left: 1rem; padding-right: 1rem; color: var(--accent); }
   .c-list small { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
   .c-list span { font-size: 16px; text-align: right; }
-  .contact-photo .ph { aspect-ratio: 4 / 5; }
+  .contact-photo .ph { aspect-ratio: 3 / 4; }
 
   footer { position: relative; overflow: hidden; border-top: 1px solid var(--line); padding: 3rem 0 2rem; }
-  .foot-name { font-family: var(--display); font-size: 21.5vw; line-height: 0.8; white-space: nowrap; text-align: center; margin-bottom: 2.5rem;
-    position: relative; color: transparent; -webkit-text-stroke: 1px rgba(237,234,228,0.5);
+  /* footer name: an outlined SVG name with a water simulation inside it (see script) */
+  .foot-name { padding: 0 1.5rem; margin-bottom: 2.5rem; touch-action: pan-y; cursor: crosshair; }
+  .foot-svg { display: block; width: 100%; height: auto; overflow: hidden; }
+  .fn-text { font-family: 'Bebas Neue', sans-serif; font-size: 260px; }
+  .fn-outline { fill: none; stroke: rgba(237,234,228,0.5); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+  .fn-water { fill: var(--ink); }
+  .fn-bubbles circle { fill: var(--bg); }
+  .fn-hint { display: none; text-align: center; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin: -1.4rem 0 2.2rem; }
+  .fn-hint.is-on { display: block; }
+  /* social links under the footer name */
+  .foot-social { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; padding: 0 1.5rem; margin: 0 auto 3rem; }
+  .foot-social a, .foot-social .soon-link {
+    display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.2rem;
+    border: 1px solid var(--line); border-radius: 999px; text-decoration: none;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: border-color 0.25s, color 0.25s, background 0.25s;
   }
-  /* water fill: a copy of the name, painted white only below the water line (--y).
-     The line rises as you scroll and stops at 90% so the wavy surface stays visible.
-     Without scripts --y keeps its default, so the name simply shows filled. */
-  .foot-name::after {
-    content: attr(data-text); position: absolute; inset: 0;
-    color: transparent; -webkit-text-stroke: 0;
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='20'%3E%3Cpath d='M0 10 Q40 0 80 10 T160 10 V20 H0Z' fill='%23EDEAE4'/%3E%3C/svg%3E"),
-      linear-gradient(var(--ink), var(--ink));
-    background-repeat: repeat-x, no-repeat;
-    background-size: 160px 20px, 100% 200%;
-    background-position-x: 0, 0;
-    background-position-y: calc(var(--y, 0.08em) - 19px), var(--y, 0.08em);
-    -webkit-background-clip: text; background-clip: text;
-    animation: wave 2.6s linear infinite;
-  }
-  @keyframes wave { to { background-position-x: 160px, 0; } }
+  .foot-social a:hover { border-color: var(--accent); color: var(--accent); }
+  .foot-social .soon-link { opacity: 0.45; cursor: default; }
+  .foot-social svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .foot-social svg.fill { fill: currentColor; stroke: none; }
   .foot-row { display: flex; justify-content: space-between; gap: 2rem; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
 
   /* ── SPLASH (only shown when scripts run) ── */
   .splash { display: none; position: fixed; inset: 0; z-index: 1000; background: var(--bg); align-items: center; justify-content: center; flex-direction: column; gap: 1.3rem; }
   .js .splash { display: flex; animation: splashGone 0s 6s forwards; }
   @keyframes splashGone { to { visibility: hidden; } }
-  /* loading screen: the outlined name fills with water to the top, then the screen lifts */
-  .splash b {
-    position: relative; font-family: var(--display); font-weight: 400;
-    font-size: clamp(3.4rem, 19vw, 13rem); line-height: 0.9; letter-spacing: 0.01em; white-space: nowrap;
-    color: transparent; -webkit-text-stroke: 1px rgba(237,234,228,0.5);
-  }
-  .splash b::after {
-    content: attr(data-text); position: absolute; inset: 0;
-    color: transparent; -webkit-text-stroke: 0;
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='20'%3E%3Cpath d='M0 10 Q40 0 80 10 T160 10 V20 H0Z' fill='%23EDEAE4'/%3E%3C/svg%3E"),
-      linear-gradient(var(--ink), var(--ink));
-    background-repeat: repeat-x, no-repeat;
-    background-size: 160px 20px, 100% 200%;
-    background-position-x: 0, 0;
-    background-position-y: calc(1em - 19px), 1em;
-    -webkit-background-clip: text; background-clip: text;
-    animation: wave 1.3s linear infinite, fillup 1.6s cubic-bezier(.45,0,.25,1) 0.15s forwards;
-  }
-  @keyframes fillup { to { background-position-y: -45px, -26px; } }
+  /* loading screen: the same water name as the footer, filled to the top before the screen lifts */
+  .sp-name { width: min(88vw, 1100px); cursor: crosshair; touch-action: none; }
 
   /* ── NAV: floating pill that marks the section you are in ── */
   nav {
@@ -409,7 +391,6 @@
     background: rgba(18,18,17,0.9);
   }
   nav.nav--solid { background: rgba(18,18,17,0.96); }
-  nav.nav--hidden { transform: translateY(-170%); }
   .nav-links { gap: 0.15rem; }
   .nav-links a { padding: 0.55rem 0.95rem; border-radius: 999px; transition: background 0.35s; }
   .nav-links a::after { display: none; }
@@ -426,13 +407,14 @@
   .ph[data-video] img { filter: none; }
   .ph--video { aspect-ratio: 16 / 9; width: 100%; }
   .life-media .ph--inset { width: 34%; bottom: -5rem; }
-  .lessons-media .ph--main { aspect-ratio: 4 / 3; }
+  .kit-media .ph--main { aspect-ratio: 4 / 3; }
+  .kit-media .ph--tall { aspect-ratio: 3 / 4; }
 
   /* ── REEL: full screen clip that plays as you scroll ── */
-  .reel { padding: 0; height: 100vh; overflow: hidden; }
+  .reel { padding: 0; height: 100vh; overflow: hidden; z-index: 3; background: var(--bg); }
   .reel-frame { position: absolute; inset: 0; overflow: hidden; background: #161615; will-change: transform; }
   .reel-frame img { width: 100%; height: 100%; object-fit: cover; }
-  .reel-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.85), rgba(10,10,10,0.1) 55%, rgba(10,10,10,0.45)); }
+  .reel-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, var(--bg) 0%, rgba(10,10,10,0) 24%, rgba(10,10,10,0.1) 55%, rgba(10,10,10,0.7) 84%, var(--bg) 100%); }
   .reel-copy { position: absolute; left: 3rem; right: 3rem; bottom: 3rem; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 2rem; }
   .reel-copy .label { margin-bottom: 1.2rem; }
   .reel-hint { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
@@ -449,7 +431,7 @@
     .hero { padding: 5.5rem 1.5rem 1.5rem; }
     .hero-tag, .hero-scroll { display: none; }
     .hero-foot { grid-template-columns: auto 1fr; }
-    .about-grid, .route-grid, .work-grid, .work-head, .lead, .pj-grid, .skills, .life-row, .lessons-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-grid, .route-grid, .work-grid, .work-head, .lead, .pj-grid, .skills, .life-row, .kit-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
     .work-media { max-width: 420px; }
     .statement { margin-bottom: 4rem; }
     .badge { right: 4px; bottom: -40px; width: 110px; height: 110px; }
@@ -467,11 +449,11 @@
     .life-row:nth-child(odd) .life-media { order: 0; }
     .life-media .ph--side { bottom: -2rem; }
     .life-media { margin-bottom: 2rem; }
-    .lessons-media .ph--side { left: -0.5rem; }
+    .kit-media .ph--side { left: -0.5rem; }
     .seq { margin-left: -1.5rem; margin-right: -1.5rem; padding: 1.2rem 0.75rem; border-left: 0; border-right: 0; }
     .seq-row { grid-template-columns: 26px repeat(16, 1fr); gap: 3px; margin-bottom: 3px; }
     .seq-tempo input { width: 90px; }
-    .lessons-media { margin-bottom: 3rem; }
+    .kit-media { margin-bottom: 3rem; }
     .quote { padding: 7rem 0; }
     .foot-row { flex-direction: column; gap: 0.5rem; }
   }
@@ -487,16 +469,29 @@
     .hero-foot { grid-template-columns: 1fr; gap: 1.25rem; }
     .hero-chips { align-items: flex-start; text-align: left; }
   }
+  @media (max-width: 900px) and (max-aspect-ratio: 3/4) {
+    .reel { display: flex; flex-direction: column; justify-content: center; gap: 1.6rem; }
+    .reel-frame { position: relative; inset: auto; width: 100%; aspect-ratio: 16 / 9; flex: none; }
+    .reel-frame::after { display: none; }
+    .reel-copy { position: static; order: -1; padding: 0 1.5rem; }
+    .reel-bar { position: relative; bottom: auto; margin-top: -1.6rem; flex: none; }
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .ticker-inner, .badge svg, .hero-scroll::after, .soon::before, .foot-name::after { animation: none; }
+    .ticker-inner, .badge svg, .hero-scroll::after, .since::before { animation: none; }
   }
 </style>
 </head>
 <body>
 
 <script>document.documentElement.classList.add('js');</script>
-<div class="splash" aria-hidden="true"><b data-text="GLAD WONG">GLAD WONG</b></div>
+<div class="splash" aria-hidden="true"><div class="sp-name">
+    <svg class="foot-svg" viewBox="0 0 1000 200">
+      <defs><clipPath id="sp-clip"><text class="fn-text" x="500" y="225" text-anchor="middle">GLAD WONG</text></clipPath></defs>
+      <g clip-path="url(#sp-clip)"><path class="fn-water" d=""/><g class="fn-bubbles"></g></g>
+      <text class="fn-text fn-outline" x="500" y="225" text-anchor="middle">GLAD WONG</text>
+    </svg>
+  </div></div>
 <div class="progress" aria-hidden="true"></div>
 
 <!-- NAV -->
@@ -505,7 +500,7 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#life">Off the clock</a>
-    <a href="#lessons">Drum lessons</a>
+    <a href="#drums">Drums</a>
     <a href="#work">By day</a>
   </div>
   <a href="#contact" class="btn btn--solid nav-cta">Contact</a>
@@ -541,8 +536,8 @@
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
-    <span>Drums</span><span>Aquascaping</span><span>Bodybuilding</span><span>Badminton</span><span>Guitar</span><span>Houseplants</span><span>Cajon</span><span>Coaching</span>
-    <span>Drums</span><span>Aquascaping</span><span>Bodybuilding</span><span>Badminton</span><span>Guitar</span><span>Houseplants</span><span>Cajon</span><span>Coaching</span>
+    <span>Drums</span><span>Aquascaping</span><span>Bodybuilding</span><span>Badminton</span><span>Guitar</span><span>Houseplants</span><span>Cajon</span><span>Grooves</span>
+    <span>Drums</span><span>Aquascaping</span><span>Bodybuilding</span><span>Badminton</span><span>Guitar</span><span>Houseplants</span><span>Cajon</span><span>Grooves</span>
   </div>
 </div>
 
@@ -555,7 +550,7 @@
 
     <div class="about-grid">
       <div class="about-photo">
-        <div class="ph" data-wipe><img src="images/web/about.jpg" alt="Glad sitting on a lawn in front of a cliff face" loading="lazy" decoding="async"></div>
+        <div class="ph" data-wipe><img src="images/web/about-jetty.jpg?v=3" alt="Glad smiling by a fishing jetty at sunset" loading="lazy" decoding="async"></div>
         <div class="badge" aria-hidden="true">
           <svg viewBox="0 0 150 150"><defs><path id="circ" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs><text><textPath href="#circ">Based in New Orleans · Rooted in Penang · </textPath></text></svg>
         </div>
@@ -650,9 +645,9 @@
         <p class="life-n">04 / Badminton</p>
         <h3 class="life-title" data-split>Fast, tactical, and a little loud.</h3>
         <!-- EDIT: badminton -->
-        <p class="body" data-fade>I coach at Chattanooga Badminton Club, handle its marketing, and have represented the state. At Covenant I co-founded the badminton club and served as vice president.</p>
+        <p class="body" data-fade>I play at Chattanooga Badminton Club whenever I'm in town and have represented the state. At Covenant I co-founded the badminton club and served as vice president.</p>
         <ul class="facts" data-stagger>
-          <li><span>Chattanooga Badminton Club</span><span>2023 to present</span></li>
+          <li><span>Member, Chattanooga Badminton Club</span><span>Since 2023</span></li>
           <li><span>Vice President, Covenant Badminton Club</span><span>2022 to 2024</span></li>
         </ul>
       </div>
@@ -666,15 +661,15 @@
 <section class="reel" id="reel">
   <div class="reel-frame" data-video="videos/reel.mp4?v=3">
     <img src="images/web/v-reel.jpg?v=3" alt="" loading="lazy" decoding="async">
-    <div class="reel-copy">
-      <div>
-        <p class="label">Sixteen years in</p>
-        <h2 class="h2">Keep scrolling. <em>I'll keep playing.</em></h2>
-      </div>
-      <p class="reel-hint">Keep scrolling ↓</p>
-    </div>
-    <span class="reel-bar"></span>
   </div>
+  <div class="reel-copy">
+    <div>
+      <p class="label">Sixteen years in</p>
+      <h2 class="h2">Keep scrolling. <em>I'll keep playing.</em></h2>
+    </div>
+    <p class="reel-hint">Keep scrolling ↓</p>
+  </div>
+  <span class="reel-bar"></span>
 </section>
 
 <!-- FRAMES -->
@@ -692,21 +687,23 @@
     <figure class="ph g-cell wide"><img src="images/web/gallery3.jpg" alt="Glad with two friends at a snowy overlook" loading="lazy" decoding="async"><figcaption>03</figcaption></figure>
     <figure class="ph g-cell"><img src="images/web/hero.jpg" alt="Glad in a graduation gown outside Covenant College" loading="lazy" decoding="async"><figcaption>04</figcaption></figure>
     <figure class="ph g-cell wide"><img src="images/web/garden.jpg" alt="Glad in front of an indoor waterfall and garden" loading="lazy" decoding="async"><figcaption>05</figcaption></figure>
+    <!-- REPLACE: sixth gallery photo -->
+    <figure class="ph g-cell"><img src="images/web/gallery2.jpg" alt="Glad standing on the deck of a ship, arms crossed" loading="lazy" decoding="async"><figcaption>06</figcaption></figure>
   </div>
 </section>
 
-<!-- LESSONS -->
-<section class="lessons" id="lessons">
+<!-- DRUMS -->
+<section class="kit" id="drums">
   <div class="wrap">
-    <p class="label"><b>04</b>Drum lessons<span class="rule"></span></p>
-    <div class="lessons-grid">
+    <p class="label"><b>04</b>Behind the kit<span class="rule"></span></p>
+    <div class="kit-grid">
       <div>
-        <p class="soon" data-fade>Opening soon</p>
-        <h2 class="h2" data-split>Learn drums <em>from someone who still practises.</em></h2>
-        <!-- EDIT: lessons intro -->
-        <p class="body" data-fade style="margin-top:2.2rem">I taught drums in Penang before college and I want to do it again. Lessons aren't open yet. If you want to learn, or you want your kid to learn, tell me now and you'll be first on the list.</p>
+        <p class="since" data-fade>Since age eight</p>
+        <h2 class="h2" data-split>Sixteen years in. <em>Still practising.</em></h2>
+        <!-- EDIT: drums intro -->
+        <p class="body" data-fade style="margin-top:2.2rem">I picked up my first pair of sticks in Penang when I was eight and never really put them down. Drums are where I go to switch off: a good groove, a metronome, and an hour that disappears.</p>
 
-        <!-- Groove machine: drum sounds are generated in the browser, no audio files -->
+        <!-- Groove machine: recorded drum hits from audio/ (public domain), with a synthesised fallback -->
         <div class="seq" data-fade>
           <div class="seq-bar">
             <button type="button" class="seq-play" aria-pressed="false">Play</button>
@@ -721,20 +718,20 @@
           <div class="seq-row" data-voice="hat"><b>HH</b></div>
           <div class="seq-row" data-voice="snare"><b>SN</b></div>
           <div class="seq-row" data-voice="kick"><b>KD</b></div>
-          <p class="seq-cap">The first groove everyone learns. Tap the squares to write your own, then press play.</p>
+          <p class="seq-cap">The first groove every drummer learns. Tap the squares to write your own, then press play.</p>
         </div>
 
-        <!-- EDIT: what you plan to teach -->
-        <ul class="teach" data-stagger>
-          <li><div><strong>Fundamentals first</strong><span>Grip, timing, rudiments, and reading. The boring parts, made less boring.</span></div></li>
-          <li><div><strong>Songs you actually like</strong><span>I transcribe them for you, the same way I did for my students in Penang.</span></div></li>
-          <li><div><strong>Rockschool grades</strong><span>I went all the way to Grade 8, so I know what the examiners look for.</span></div></li>
+        <!-- EDIT: how I practise -->
+        <ul class="habits" data-stagger>
+          <li><div><strong>Fundamentals, every time</strong><span>Grip, timing and rudiments. Still the first ten minutes of every session.</span></div></li>
+          <li><div><strong>Songs I love</strong><span>I learn them by ear and write them out note for note.</span></div></li>
+          <li><div><strong>Rockschool Grade 8</strong><span>The top grade. Getting there taught me patience more than anything.</span></div></li>
         </ul>
-        <a class="btn btn--solid" data-fade href="https://wa.me/15042517264?text=Hi%20Glad%2C%20I%27m%20interested%20in%20drum%20lessons." target="_blank" rel="noopener">Join the interest list</a>
+        <a class="btn btn--solid" data-fade href="https://wa.me/15042517264" target="_blank" rel="noopener">Talk drums with me</a>
       </div>
-      <div class="lessons-media">
-        <div class="ph ph--video" data-wipe data-video="videos/lesson-kit.mp4?v=3"><img src="images/web/v-lesson-kit.jpg?v=3" alt="Hands playing a drum kit, seen from above" loading="lazy" decoding="async"></div>
-        <div class="ph ph--main" data-wipe style="margin-top:1rem"><img src="images/web/drums2.jpg" alt="Glad sitting at a drum kit, smiling" loading="lazy" decoding="async"></div>
+      <div class="kit-media">
+        <div class="ph ph--video" data-wipe data-video="videos/kit-overhead.mp4?v=3"><img src="images/web/v-kit-overhead.jpg?v=3" alt="Hands playing a drum kit, seen from above" loading="lazy" decoding="async"></div>
+        <div class="ph ph--main ph--tall" data-wipe style="margin-top:1rem"><img src="images/web/drums2-graded.jpg?v=2" alt="Glad sitting at a drum kit, smiling" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </div>
@@ -768,6 +765,7 @@
       <ul class="c-list" data-stagger>
         <li><a href="mailto:gladw.business@gmail.com"><small>Email</small><span>gladw.business@gmail.com</span></a></li>
         <li><a href="https://wa.me/15042517264" target="_blank" rel="noopener"><small>WhatsApp</small><span>+1 504 251 7264</span></a></li>
+        <li><a href="https://www.instagram.com/gladw_drums/" target="_blank" rel="noopener"><small>Instagram</small><span>@gladw_drums</span></a></li>
         <li><a href="https://linkedin.com/in/gladwong" target="_blank" rel="noopener"><small>LinkedIn</small><span>linkedin.com/in/gladwong</span></a></li>
         <li><a href="https://github.com/gladwong" target="_blank" rel="noopener"><small>GitHub</small><span>github.com/gladwong</span></a></li>
         <li><div><small>Based</small><span>New Orleans, LA &amp; Penang, MY</span></div></li>
@@ -775,13 +773,36 @@
       <a class="btn btn--solid" data-fade style="margin-top:2.5rem" href="mailto:gladw.business@gmail.com">Email me</a>
     </div>
     <div class="contact-photo">
-      <div class="ph" data-wipe><img src="images/web/contact.jpg" alt="Glad smiling in sunglasses outside a plant shop" loading="lazy" decoding="async"></div>
+      <div class="ph" data-wipe><img src="images/web/contact-plants.jpg" alt="Glad smiling in sunglasses outside a plant shop" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="foot-name" data-text="GLAD WONG" aria-hidden="true">GLAD WONG</div>
+  <div class="foot-name" aria-hidden="true">
+    <svg class="foot-svg" viewBox="0 0 1000 200">
+      <defs><clipPath id="fn-clip"><text class="fn-text" x="500" y="225" text-anchor="middle">GLAD WONG</text></clipPath></defs>
+      <g clip-path="url(#fn-clip)"><path class="fn-water" d=""/><g class="fn-bubbles"></g></g>
+      <text class="fn-text fn-outline" x="500" y="225" text-anchor="middle">GLAD WONG</text>
+    </svg>
+  </div>
+  <p class="fn-hint" aria-hidden="true">Tap the water, then tilt your phone</p>
+  <div class="foot-social">
+    <a href="https://www.instagram.com/gladw_drums/" target="_blank" rel="noopener" aria-label="Instagram, @gladw_drums">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+    <a href="https://linkedin.com/in/gladwong" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6M8 7.5v.01M12 16.5v-6M12 13a2.5 2.5 0 0 1 5 0v3.5"/></svg><span>LinkedIn</span></a>
+    <a href="https://github.com/gladwong" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg class="fill" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
+    <a href="https://wa.me/15042517264" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.4 7.6L3.5 20.5l1.3-4.4a8.5 8.5 0 1 1 15.7-4.5z"/><path d="M9 9.5c.3 1.7 2 3.8 4 4.6l1.2-1 1.6.7-.3 1.4c-2.9.3-6.7-2.8-7.3-5.9l1.3-.6.7 1.5z"/></svg><span>WhatsApp</span></a>
+    <a href="mailto:gladw.business@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg><span>Email</span></a>
+    <!-- REPLACE: when the channel exists, change this span to
+         <a href="https://www.youtube.com/@yourhandle" target="_blank" rel="noopener" aria-label="YouTube"> ... </a> -->
+    <span class="soon-link" title="Coming soon">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9.5 5 2.5-5 2.5z" fill="currentColor"/></svg><span>YouTube</span></span>
+  </div>
   <div class="wrap foot-row">
     <span>Glad Wong Ee Ler</span>
     <span>Hand coded. No templates.</span>
@@ -851,11 +872,21 @@
         try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
         ctx = new AC();
         master = ctx.createGain(); master.gain.value = 0.8; master.connect(ctx.destination);
+        loadSamples();
         noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
         var d = noise.getChannelData(0);
         for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
       }
       if (ctx.state === 'suspended') ctx.resume();
+    }
+    /* recorded drum hits (public domain SM Drums kit, see audio/CREDITS.txt) */
+    var samples = {}, LEVEL = { kick: 1, snare: 0.9, hat: 0.55 };
+    function loadSamples() {
+      ['kick', 'snare', 'hat'].forEach(function (name) {
+        fetch('audio/' + name + '.mp3').then(function (r) { return r.arrayBuffer(); }).then(function (buf) {
+          return new Promise(function (res, rej) { ctx.decodeAudioData(buf, res, rej); });
+        }).then(function (decoded) { samples[name] = decoded; }).catch(function () {});
+      });
     }
     function env(g, t, peak, decay) {
       g.gain.setValueAtTime(0.0001, t);
@@ -870,6 +901,13 @@
     }
     function sound(voice, t) {
       if (!ctx) return;
+      if (samples[voice]) {
+        var s = ctx.createBufferSource(), sg = ctx.createGain();
+        s.buffer = samples[voice]; sg.gain.value = LEVEL[voice];
+        s.connect(sg); sg.connect(master); s.start(t);
+        return;
+      }
+      /* fallback while the recordings load, or if they fail: synthesised hits */
       if (voice === 'kick') {
         var o = ctx.createOscillator(), g = ctx.createGain();
         o.type = 'sine';
@@ -928,6 +966,175 @@
     document.addEventListener('visibilitychange', function () { if (document.hidden && playing) stop(); });
   })();
 
+  /* water names: the outlined "GLAD WONG" fills with water. Moving the mouse across it makes it
+     slosh and splash, a click or tap makes a bigger splash, bubbles rise from the bottom, and on
+     phones the water tips as you tilt. Used twice: the loading screen fills to the top over time,
+     the footer fills to 80% as you reach the bottom of the page. Each only animates while on screen. */
+  var tiltHub = { on: false, fns: [], start: function () {
+    if (tiltHub.on || !('DeviceOrientationEvent' in window)) return;
+    var send = function (e) { tiltHub.fns.forEach(function (f) { f(e); }); };
+    var ask = window.DeviceOrientationEvent.requestPermission;
+    if (typeof ask === 'function') {
+      /* iPhones only allow this after a tap; many Android browsers grant it straight away */
+      ask.call(window.DeviceOrientationEvent).then(function (state) {
+        if (state === 'granted' && !tiltHub.on) { tiltHub.on = true; window.addEventListener('deviceorientation', send); }
+      }).catch(function () {});
+    } else {
+      tiltHub.on = true;
+      window.addEventListener('deviceorientation', send);
+    }
+  } };
+  var stillWater = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touchScreen = window.matchMedia('(pointer: coarse)').matches;
+
+  function makeWater(wrap, opts) {
+    var svg = wrap.querySelector('svg'), water = wrap.querySelector('.fn-water'), bubbleG = wrap.querySelector('.fn-bubbles');
+    var target = opts.target || wrap;
+    var X = 500, BASE = 225, FS = 260;
+    var left = 0, right = 1000, top = 0, bottom = 225, width = 1000, capH = 180;
+    var N = 64, h = [], v = [], tilt = 0, tiltV = 0, tiltTarget = 0, fill = 0, t = 0, bubbles = [], visible = false, raf = 0, last = 0, born = 0;
+    for (var i = 0; i < N; i++) { h.push(0); v.push(0); }
+
+    function measure() {
+      var c = document.createElement('canvas').getContext('2d');
+      c.font = FS + "px 'Bebas Neue'";
+      c.textAlign = 'center';
+      var m = c.measureText('GLAD WONG');
+      left = X - m.actualBoundingBoxLeft; right = X + m.actualBoundingBoxRight;
+      capH = m.actualBoundingBoxAscent; top = BASE - capH; bottom = BASE + Math.max(0, m.actualBoundingBoxDescent);
+      width = right - left;
+      var pad = 4;
+      svg.setAttribute('viewBox', (left - pad) + ' ' + (top - pad) + ' ' + (width + pad * 2) + ' ' + (bottom - top + pad * 2));
+    }
+    function xAt(i) { return left - 10 + (width + 20) * i / (N - 1); }
+    function idx(x) { return Math.max(0, Math.min(N - 1, Math.round((x - left + 10) / (width + 20) * (N - 1)))); }
+    function surface(i, x) {
+      return BASE - fill * capH + h[i] + tilt * (x - X) +
+        Math.sin(x * 0.045 + t * 2.4) * 2.5 + Math.sin(x * 0.021 - t * 1.6) * 1.8;
+    }
+    function draw() {
+      var d = 'M' + (left - 10) + ' ' + (bottom + 20);
+      for (var i = 0; i < N; i++) { var x = xAt(i); d += ' L' + x.toFixed(1) + ' ' + surface(i, x).toFixed(1); }
+      water.setAttribute('d', d + ' L' + (right + 10) + ' ' + (bottom + 20) + ' Z');
+    }
+    function spawn(b, anywhere) {
+      b.x = left + Math.random() * width;
+      b.y = anywhere ? bottom - Math.random() * capH * Math.min(1, opts.full) : bottom + 4 + Math.random() * 40;
+      b.r = 2 + Math.random() * 4.5;
+      b.speed = 0.5 + Math.random() * 1.1;
+      b.phase = Math.random() * 6.28;
+    }
+    function step(now) {
+      var dt = Math.min(0.05, (now - (last || now)) / 1000) || 0.016;
+      last = now; t += dt;
+      fill += (opts.full * opts.level(now - born) - fill) * 0.08;
+      for (var i = 0; i < N; i++) v[i] += -0.025 * h[i] - 0.035 * v[i];
+      for (var pass = 0; pass < 2; pass++) {
+        for (i = 0; i < N; i++) {
+          if (i > 0) v[i] += (h[i - 1] - h[i]) * 0.12;
+          if (i < N - 1) v[i] += (h[i + 1] - h[i]) * 0.12;
+        }
+      }
+      for (i = 0; i < N; i++) h[i] += v[i];
+      tiltV += -0.035 * (tilt - tiltTarget) - 0.05 * tiltV;
+      tilt = Math.max(-0.3, Math.min(0.3, tilt + tiltV));
+      bubbles.forEach(function (b) {
+        b.y -= b.speed;
+        b.x += Math.sin(t * 3 + b.phase) * 0.35;
+        if (b.y - b.r < surface(idx(b.x), b.x) + 1) spawn(b, false);
+        b.el.setAttribute('cx', b.x.toFixed(1));
+        b.el.setAttribute('cy', b.y.toFixed(1));
+        b.el.setAttribute('r', b.r.toFixed(1));
+      });
+      draw();
+      raf = visible && (!opts.alive || opts.alive()) ? requestAnimationFrame(step) : 0;
+    }
+    function wake() { if (!raf && visible && !stillWater) { last = 0; raf = requestAnimationFrame(step); } }
+    function toSvg(e) {
+      var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      var m = svg.getScreenCTM();
+      return m ? pt.matrixTransform(m.inverse()) : { x: X, y: BASE };
+    }
+    function splash(x, power, spread) {
+      var i0 = idx(x);
+      for (var k = -spread; k <= spread; k++) {
+        var j = i0 + k;
+        if (j >= 0 && j < N) v[j] -= power * Math.exp(-(k * k) / (spread * 1.5));
+      }
+    }
+    var lastX = null, lastT = 0;
+    target.addEventListener('pointermove', function (e) {
+      var p = toSvg(e), now = performance.now();
+      if (lastX !== null) {
+        var speed = Math.max(-40, Math.min(40, (p.x - lastX) / Math.max(8, now - lastT) * 16));
+        tiltV += speed * 0.00008;
+        splash(p.x, Math.abs(speed) * 0.18, 4);
+      }
+      lastX = p.x; lastT = now;
+      wake();
+    });
+    target.addEventListener('pointerleave', function () { lastX = null; });
+    target.addEventListener('pointerdown', function (e) {
+      if (touchScreen) tiltHub.start();
+      splash(toSvg(e).x, 9, 6); tiltV += (Math.random() - 0.5) * 0.004; wake();
+    });
+    var lastGamma = null;
+    tiltHub.fns.push(function (e) {
+      if (e.gamma == null) return;
+      var g = Math.max(-60, Math.min(60, e.gamma));
+      tiltTarget = Math.max(-0.3, Math.min(0.3, -Math.tan(g * Math.PI / 180) * 0.5));
+      if (lastGamma !== null) {
+        var jolt = g - lastGamma;
+        if (Math.abs(jolt) > 4) splash(jolt > 0 ? left + width * 0.15 : right - width * 0.15, Math.min(10, Math.abs(jolt) * 0.6), 6);
+      }
+      lastGamma = g;
+      wake();
+    });
+
+    function init() {
+      measure();
+      born = performance.now();
+      if (stillWater) { fill = Math.min(opts.full, 1.1); draw(); return; }
+      for (var i = 0; i < 18; i++) {
+        var b = { el: document.createElementNS('http://www.w3.org/2000/svg', 'circle') };
+        bubbleG.appendChild(b.el);
+        spawn(b, true);
+        bubbles.push(b);
+      }
+      draw();
+      if (opts.watch && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[entries.length - 1].isIntersecting;
+          wake();
+        }, { rootMargin: '100px 0px' }).observe(opts.watch);
+      } else { visible = true; wake(); }
+    }
+    if (document.fonts && document.fonts.load) document.fonts.load(FS + "px 'Bebas Neue'").then(init, init);
+    else init();
+  }
+
+  /* loading screen: rises to the very top in about 1.4 seconds */
+  var splashEl = document.querySelector('.splash');
+  if (splashEl) makeWater(splashEl.querySelector('.sp-name'), {
+    target: splashEl, full: 1.15,
+    level: function (ms) { var k = Math.min(1, ms / 1400); return k * k * (3 - 2 * k); },
+    alive: function () { return splashEl.isConnected && getComputedStyle(splashEl).display !== 'none' && getComputedStyle(splashEl).visibility !== 'hidden'; }
+  });
+  /* footer: rises to 80% as the page reaches the bottom */
+  var footWrap = document.querySelector('.foot-name');
+  if (footWrap) makeWater(footWrap, {
+    full: 0.8, watch: footWrap.parentNode,
+    level: function () {
+      var r = footWrap.parentNode.getBoundingClientRect();
+      return Math.max(0, Math.min(1, (window.innerHeight - r.top) / r.height));
+    }
+  });
+  if (touchScreen && !stillWater) {
+    var fnHint = document.querySelector('.fn-hint');
+    if (fnHint) fnHint.classList.add('is-on');
+    tiltHub.start();
+  }
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion || !window.gsap || !window.ScrollTrigger) {
     document.querySelectorAll('.ph').forEach(function (p) { p.classList.add('is-live', 'is-open'); });
@@ -981,13 +1188,12 @@
     clips.forEach(function (c) { if (c.clip && c.on && c.clip.paused) tryPlay(c.clip); });
   }, { passive: true });
 
-  /* nav: solid after the top, hides on the way down, returns on the way up */
+  /* nav: stays on screen; turns solid after the top */
   ScrollTrigger.create({
     start: 0, end: 'max',
     onUpdate: function (self) {
       var y = self.scroll();
       nav.classList.toggle('nav--solid', y > 80);
-      nav.classList.toggle('nav--hidden', self.direction === 1 && y > window.innerHeight);
     }
   });
 
@@ -1014,11 +1220,11 @@
 
   /* ── hero: load-in, then on scroll the name parts and fades so the face is clear ── */
   gsap.timeline({ defaults: { ease: 'power4.out' } })
-    .to('.splash', { yPercent: -100, duration: 0.9, ease: 'power4.inOut' }, 1.95)
+    .to('.splash', { yPercent: -100, duration: 0.9, ease: 'power4.inOut' }, 2.2)
     .set('.splash', { display: 'none' })
-    .from('.hero-name .hw > span', { yPercent: 105, duration: 1.3, stagger: function (i) { return (i % 2) * 0.14; } }, 2.3)
-    .from('.hero-portrait img', { opacity: 0, scale: 1.12, duration: 1.8, ease: 'power2.out' }, 2.4)
-    .from('.hero-top > *, .hero-foot > *', { opacity: 0, y: 20, duration: 0.8, stagger: 0.08 }, 3.0);
+    .from('.hero-name .hw > span', { yPercent: 105, duration: 1.3, stagger: function (i) { return (i % 2) * 0.14; } }, 2.55)
+    .from('.hero-portrait img', { opacity: 0, scale: 1.12, duration: 1.8, ease: 'power2.out' }, 2.65)
+    .from('.hero-top > *, .hero-foot > *', { opacity: 0, y: 20, duration: 0.8, stagger: 0.08 }, 3.25);
 
   gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: '+=90%', scrub: true, pin: true } })
     .to('.hero-name .hw:first-child', { xPercent: -80, ease: 'none', duration: 1 }, 0)
@@ -1119,7 +1325,8 @@
       primeReel();
     }
   });
-  gsap.timeline({
+  var phoneReel = window.matchMedia('(max-width: 900px) and (max-aspect-ratio: 3/4)').matches;
+  var reelTl = gsap.timeline({
     scrollTrigger: {
       trigger: reel, start: 'top top', end: '+=110%', pin: true, scrub: true,
       onUpdate: function (self) {
@@ -1132,12 +1339,30 @@
       }
     }
   })
-    .fromTo(reelFrame, { scale: 0.5 }, { scale: 1, ease: 'none', duration: 0.25 }, 0)
-    .from(splitWords(document.querySelector('.reel-copy .h2')), { yPercent: 115, duration: 0.12, stagger: 0.02, ease: 'power3.out' }, 0.18)
-    .from('.reel-copy .label, .reel-hint', { opacity: 0, duration: 0.1 }, 0.2)
-    .fromTo('.reel-bar', { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 1 }, 0)
-    .to('.reel-copy', { opacity: 0, duration: 0.1 }, 0.5)
-    .to(reelFrame, { scale: 0.88, ease: 'none', duration: 0.12 }, 0.88);
+    .fromTo('.reel-bar', { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 1 }, 0);
+  /* hand-off: the clip dissolves while the gallery rises into view, rather than fading to black first */
+  gsap.fromTo(phoneReel ? [reelFrame, '.reel-bar', '.reel-copy'] : [reelFrame, '.reel-bar'], { opacity: 1 }, {
+    opacity: 0, ease: 'none', immediateRender: false,
+    scrollTrigger: { trigger: '#frames', start: 'top bottom', end: 'top 30%', scrub: true }
+  });
+  var reelWords = splitWords(document.querySelector('.reel-copy .h2'));
+  if (phoneReel) {
+    /* phones: the heading sits above the clip, so reveal it as the section arrives */
+    var arrive = { trigger: reel, start: 'top 75%', once: true };
+    gsap.from(reelFrame, { opacity: 0, duration: 1.2, ease: 'power2.out', scrollTrigger: { trigger: reel, start: 'top 85%', once: true } });
+    gsap.from(reelWords, { yPercent: 115, duration: 1, stagger: 0.07, ease: 'power4.out', scrollTrigger: arrive });
+    gsap.from('.reel-copy .label, .reel-hint', { opacity: 0, duration: 0.8, scrollTrigger: { trigger: reel, start: 'top 75%', once: true } });
+  } else {
+    reelTl.from(reelWords, { yPercent: 115, duration: 0.12, stagger: 0.02, ease: 'power3.out' }, 0.02)
+      .from('.reel-copy .label, .reel-hint', { opacity: 0, duration: 0.1 }, 0.04);
+  }
+  /* desktop: the frame grows to full screen while the section scrolls in, so there is no empty gap,
+     and the heading clears halfway so the clip has the screen to itself */
+  if (!phoneReel) {
+    gsap.fromTo(reelFrame, { scale: 0.9 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: reel, start: 'top bottom', end: 'top top', scrub: true } });
+    gsap.fromTo(reelFrame, { opacity: 0 }, { opacity: 1, ease: 'power1.in', scrollTrigger: { trigger: reel, start: 'top bottom', end: 'top 25%', scrub: true } });
+    reelTl.to('.reel-copy', { opacity: 0, duration: 0.1 }, 0.55);
+  }
 
   /* gallery: pinned and horizontal on desktop, plain grid on small screens */
   var frames = document.querySelector('.frames');
@@ -1153,13 +1378,6 @@
       }
     });
     return function () { frames.classList.remove('is-h'); };
-  });
-
-  /* footer name fills with water as the page reaches the bottom */
-  var footName = document.querySelector('.foot-name');
-  gsap.fromTo(footName, { '--y': function () { return (footName.offsetHeight + 4) + 'px'; } }, {
-    '--y': function () { return (footName.offsetHeight * 0.1) + 'px'; }, ease: 'none',
-    scrollTrigger: { trigger: 'footer', start: 'top 95%', end: function () { return ScrollTrigger.maxScroll(window) - 30; }, scrub: true, invalidateOnRefresh: true }
   });
 
   /* scroll progress bar */
