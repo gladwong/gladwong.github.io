@@ -77,13 +77,15 @@
   .ph img {
     width: 100%; height: 100%; object-fit: cover;
     filter: grayscale(1) brightness(0.85);
-    transition: filter 0.9s ease;
+    transition: filter 0.9s ease, opacity 1.6s ease, transform 2.2s cubic-bezier(.22,.61,.36,1);
   }
+  .js .ph[data-wipe] img { opacity: 0.35; transform: scale(1.08); }
+  .js .ph[data-wipe].is-open img { opacity: 1; transform: none; }
   .ph.is-live img, .ph:hover img { filter: none; }
   .js .ph[data-wipe]::after {
     content: ''; position: absolute; inset: -1px; z-index: 3; pointer-events: none;
     background: var(--bg); transform-origin: top center;
-    transition: transform 1.3s cubic-bezier(.76,0,.24,1);
+    transition: transform 1.9s cubic-bezier(.22,.61,.36,1);
   }
   .js .ph[data-wipe].is-open::after { transform: scaleY(0); }
   .js .work .ph[data-wipe]::after, .js .kit .ph[data-wipe]::after { background: var(--bg2); }
@@ -360,8 +362,6 @@
   .fn-outline { fill: none; stroke: rgba(237,234,228,0.5); stroke-width: 1px; vector-effect: non-scaling-stroke; }
   .fn-water { fill: var(--ink); }
   .fn-bubbles circle { fill: var(--bg); }
-  .fn-hint { display: none; text-align: center; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin: -1.4rem 0 2.2rem; }
-  .fn-hint.is-on { display: block; }
   /* social links under the footer name */
   .foot-social { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; padding: 0 1.5rem; margin: 0 auto 3rem; }
   .foot-social a, .foot-social .soon-link {
@@ -470,7 +470,7 @@
     .hero-chips { align-items: flex-start; text-align: left; }
   }
   @media (max-width: 900px) and (max-aspect-ratio: 3/4) {
-    .reel { display: flex; flex-direction: column; justify-content: center; gap: 1.6rem; }
+    .reel { display: flex; flex-direction: column; justify-content: center; gap: 1.6rem; height: auto; padding: 4rem 0; }
     .reel-frame { position: relative; inset: auto; width: 100%; aspect-ratio: 16 / 9; flex: none; }
     .reel-frame::after { display: none; }
     .reel-copy { position: static; order: -1; padding: 0 1.5rem; }
@@ -786,7 +786,6 @@
       <text class="fn-text fn-outline" x="500" y="225" text-anchor="middle">GLAD WONG</text>
     </svg>
   </div>
-  <p class="fn-hint" aria-hidden="true">Tap the water, then tilt your phone</p>
   <div class="foot-social">
     <a href="https://www.instagram.com/gladw_drums/" target="_blank" rel="noopener" aria-label="Instagram, @gladw_drums">
       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
@@ -967,32 +966,17 @@
   })();
 
   /* water names: the outlined "GLAD WONG" fills with water. Moving the mouse across it makes it
-     slosh and splash, a click or tap makes a bigger splash, bubbles rise from the bottom, and on
-     phones the water tips as you tilt. Used twice: the loading screen fills to the top over time,
+     slosh and splash, a click or tap makes a bigger splash, and bubbles rise from the bottom.
+     Used twice: the loading screen fills to the top over time,
      the footer fills to 80% as you reach the bottom of the page. Each only animates while on screen. */
-  var tiltHub = { on: false, fns: [], start: function () {
-    if (tiltHub.on || !('DeviceOrientationEvent' in window)) return;
-    var send = function (e) { tiltHub.fns.forEach(function (f) { f(e); }); };
-    var ask = window.DeviceOrientationEvent.requestPermission;
-    if (typeof ask === 'function') {
-      /* iPhones only allow this after a tap; many Android browsers grant it straight away */
-      ask.call(window.DeviceOrientationEvent).then(function (state) {
-        if (state === 'granted' && !tiltHub.on) { tiltHub.on = true; window.addEventListener('deviceorientation', send); }
-      }).catch(function () {});
-    } else {
-      tiltHub.on = true;
-      window.addEventListener('deviceorientation', send);
-    }
-  } };
   var stillWater = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var touchScreen = window.matchMedia('(pointer: coarse)').matches;
 
   function makeWater(wrap, opts) {
     var svg = wrap.querySelector('svg'), water = wrap.querySelector('.fn-water'), bubbleG = wrap.querySelector('.fn-bubbles');
     var target = opts.target || wrap;
     var X = 500, BASE = 225, FS = 260;
     var left = 0, right = 1000, top = 0, bottom = 225, width = 1000, capH = 180;
-    var N = 64, h = [], v = [], tilt = 0, tiltV = 0, tiltTarget = 0, fill = 0, t = 0, bubbles = [], visible = false, raf = 0, last = 0, born = 0;
+    var N = 64, h = [], v = [], tilt = 0, tiltV = 0, fill = 0, t = 0, bubbles = [], visible = false, raf = 0, last = 0, born = 0;
     for (var i = 0; i < N; i++) { h.push(0); v.push(0); }
 
     function measure() {
@@ -1036,7 +1020,7 @@
         }
       }
       for (i = 0; i < N; i++) h[i] += v[i];
-      tiltV += -0.035 * (tilt - tiltTarget) - 0.05 * tiltV;
+      tiltV += -0.035 * tilt - 0.05 * tiltV;
       tilt = Math.max(-0.3, Math.min(0.3, tilt + tiltV));
       bubbles.forEach(function (b) {
         b.y -= b.speed;
@@ -1075,20 +1059,7 @@
     });
     target.addEventListener('pointerleave', function () { lastX = null; });
     target.addEventListener('pointerdown', function (e) {
-      if (touchScreen) tiltHub.start();
       splash(toSvg(e).x, 9, 6); tiltV += (Math.random() - 0.5) * 0.004; wake();
-    });
-    var lastGamma = null;
-    tiltHub.fns.push(function (e) {
-      if (e.gamma == null) return;
-      var g = Math.max(-60, Math.min(60, e.gamma));
-      tiltTarget = Math.max(-0.3, Math.min(0.3, -Math.tan(g * Math.PI / 180) * 0.5));
-      if (lastGamma !== null) {
-        var jolt = g - lastGamma;
-        if (Math.abs(jolt) > 4) splash(jolt > 0 ? left + width * 0.15 : right - width * 0.15, Math.min(10, Math.abs(jolt) * 0.6), 6);
-      }
-      lastGamma = g;
-      wake();
     });
 
     function init() {
@@ -1129,11 +1100,6 @@
       return Math.max(0, Math.min(1, (window.innerHeight - r.top) / r.height));
     }
   });
-  if (touchScreen && !stillWater) {
-    var fnHint = document.querySelector('.fn-hint');
-    if (fnHint) fnHint.classList.add('is-on');
-    tiltHub.start();
-  }
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion || !window.gsap || !window.ScrollTrigger) {
@@ -1328,7 +1294,7 @@
   var phoneReel = window.matchMedia('(max-width: 900px) and (max-aspect-ratio: 3/4)').matches;
   var reelTl = gsap.timeline({
     scrollTrigger: {
-      trigger: reel, start: 'top top', end: '+=110%', pin: true, scrub: true,
+      trigger: reel, start: phoneReel ? 'top 85%' : 'top top', end: phoneReel ? 'bottom 15%' : '+=110%', pin: !phoneReel, scrub: true,
       onUpdate: function (self) {
         if (!reelClip || !reelClip.duration) return;
         if (!reelClip.paused) reelClip.pause();
@@ -1341,7 +1307,7 @@
   })
     .fromTo('.reel-bar', { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 1 }, 0);
   /* hand-off: the clip dissolves while the gallery rises into view, rather than fading to black first */
-  gsap.fromTo(phoneReel ? [reelFrame, '.reel-bar', '.reel-copy'] : [reelFrame, '.reel-bar'], { opacity: 1 }, {
+  if (!phoneReel) gsap.fromTo([reelFrame, '.reel-bar'], { opacity: 1 }, {
     opacity: 0, ease: 'none', immediateRender: false,
     scrollTrigger: { trigger: '#frames', start: 'top bottom', end: 'top 30%', scrub: true }
   });
