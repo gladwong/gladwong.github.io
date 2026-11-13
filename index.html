@@ -595,8 +595,8 @@
      The clip is videos/reel.mp4 (the photo below shows until it loads, or if it is missing).
      To add a looping clip to ANY photo on the page, add data-video="videos/yourclip.mp4" to its .ph frame. -->
 <section class="reel" id="reel">
-  <div class="reel-frame" data-video="videos/reel.mp4">
-    <img src="images/web/v-reel.jpg" alt="" loading="lazy" decoding="async">
+  <div class="reel-frame" data-video="videos/reel.mp4?v=2">
+    <img src="images/web/v-reel.jpg?v=2" alt="" loading="lazy" decoding="async">
     <div class="reel-copy">
       <div>
         <p class="label">Sixteen years in</p>
@@ -744,7 +744,6 @@
 
   /* videos: layer a muted clip over a frame's photo. Phones only start loading a clip
      when play() is called, so clips are started directly rather than waiting for data. */
-  var touch = window.matchMedia('(pointer: coarse)').matches;
   var clips = [];
   function attachVideo(frame, loop) {
     var v = document.createElement('video');
@@ -901,27 +900,28 @@
   var reelFrame = document.querySelector('.reel-frame');
   var reelClip = null;
   var playhead = { t: 0 };
-  var reelState = { clip: null, on: false };
-  clips.push(reelState);
+  /* the reel never plays on its own: start it once so the browser loads it, then hold it paused.
+     Scroll position is the only thing that moves it. */
+  var reelPrimed = false;
+  function primeReel() {
+    if (!reelClip || reelPrimed) return;
+    var p = reelClip.play();
+    if (p && p.then) p.then(function () { reelPrimed = true; reelClip.pause(); }).catch(function () {});
+  }
+  document.addEventListener('touchstart', primeReel, { passive: true });
   ScrollTrigger.create({
     trigger: reel, start: 'top 250%', once: true,
     onEnter: function () {
-      reelClip = attachVideo(reelFrame, touch);
-      reelState.clip = reelClip;
-      /* desktop: prime the clip so it can be scrubbed; touch screens just play it as a loop */
-      if (!touch) { var p = reelClip.play(); if (p && p.then) p.then(function () { reelClip.pause(); }).catch(function () {}); }
+      reelClip = attachVideo(reelFrame, false);
+      primeReel();
     }
   });
   gsap.timeline({
     scrollTrigger: {
-      trigger: reel, start: 'top top', end: '+=180%', pin: true, scrub: true,
-      onToggle: function (self) {
-        reelState.on = touch && self.isActive;
-        if (!touch || !reelClip) return;
-        if (self.isActive) tryPlay(reelClip); else reelClip.pause();
-      },
+      trigger: reel, start: 'top top', end: '+=110%', pin: true, scrub: true,
       onUpdate: function (self) {
-        if (touch || !reelClip || !reelClip.duration) return;
+        if (!reelClip || !reelClip.duration) return;
+        if (!reelClip.paused) reelClip.pause();
         gsap.to(playhead, {
           t: self.progress * (reelClip.duration - 0.1), duration: 0.6, ease: 'power3.out', overwrite: true,
           onUpdate: function () { if (!reelClip.seeking) reelClip.currentTime = playhead.t; }
