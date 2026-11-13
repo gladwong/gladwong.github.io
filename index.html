@@ -330,7 +330,7 @@
     position: relative; color: transparent; -webkit-text-stroke: 1px rgba(237,234,228,0.5);
   }
   /* water fill: a copy of the name, painted white only below the water line (--y).
-     The line rises as you scroll; the wavy surface drifts sideways on its own.
+     The line rises as you scroll and stops at 90% so the wavy surface stays visible.
      Without scripts --y keeps its default, so the name simply shows filled. */
   .foot-name::after {
     content: attr(data-text); position: absolute; inset: 0;
@@ -341,7 +341,7 @@
     background-repeat: repeat-x, no-repeat;
     background-size: 160px 20px, 100% 200%;
     background-position-x: 0, 0;
-    background-position-y: calc(var(--y, -24px) - 19px), var(--y, -24px);
+    background-position-y: calc(var(--y, 0.08em) - 19px), var(--y, 0.08em);
     -webkit-background-clip: text; background-clip: text;
     animation: wave 2.6s linear infinite;
   }
@@ -429,7 +429,9 @@
   }
   /* stacked name only on tall, phone-shaped screens; short or wide windows keep the one-line hero */
   @media (max-width: 900px) and (max-aspect-ratio: 3/4) {
-    .hero-layer { align-items: flex-start; padding-top: 13vh; }
+    .hero-top { display: none; }
+    .hero { justify-content: flex-end; }
+    .hero-layer { align-items: flex-start; padding-top: 14vh; }
     .hero-name { font-size: min(47vw, 24vh); white-space: normal; text-align: center; }
     .hero-name .hw { display: block; }
     .hero-name .hw + .hw { margin-left: 0; }
@@ -974,7 +976,7 @@
   /* footer name fills with water as the page reaches the bottom */
   var footName = document.querySelector('.foot-name');
   gsap.fromTo(footName, { '--y': function () { return (footName.offsetHeight + 4) + 'px'; } }, {
-    '--y': '-24px', ease: 'none',
+    '--y': function () { return (footName.offsetHeight * 0.1) + 'px'; }, ease: 'none',
     scrollTrigger: { trigger: 'footer', start: 'top 95%', end: function () { return ScrollTrigger.maxScroll(window) - 30; }, scrub: true, invalidateOnRefresh: true }
   });
 
