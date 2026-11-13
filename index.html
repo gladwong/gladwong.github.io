@@ -327,8 +327,25 @@
 
   footer { position: relative; overflow: hidden; border-top: 1px solid var(--line); padding: 3rem 0 2rem; }
   .foot-name { font-family: var(--display); font-size: 21.5vw; line-height: 0.8; white-space: nowrap; text-align: center; margin-bottom: 2.5rem;
-    color: var(--ink);
+    position: relative; color: transparent; -webkit-text-stroke: 1px rgba(237,234,228,0.5);
   }
+  /* water fill: a copy of the name, painted white only below the water line (--y).
+     The line rises as you scroll; the wavy surface drifts sideways on its own.
+     Without scripts --y keeps its default, so the name simply shows filled. */
+  .foot-name::after {
+    content: attr(data-text); position: absolute; inset: 0;
+    color: transparent; -webkit-text-stroke: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='20'%3E%3Cpath d='M0 10 Q40 0 80 10 T160 10 V20 H0Z' fill='%23EDEAE4'/%3E%3C/svg%3E"),
+      linear-gradient(var(--ink), var(--ink));
+    background-repeat: repeat-x, no-repeat;
+    background-size: 160px 20px, 100% 200%;
+    background-position-x: 0, 0;
+    background-position-y: calc(var(--y, -24px) - 19px), var(--y, -24px);
+    -webkit-background-clip: text; background-clip: text;
+    animation: wave 2.6s linear infinite;
+  }
+  @keyframes wave { to { background-position-x: 160px, 0; } }
   .foot-row { display: flex; justify-content: space-between; gap: 2rem; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
 
   /* ── SPLASH (only shown when scripts run) ── */
@@ -422,7 +439,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .ticker-inner, .badge svg, .seq-row i.on, .hero-scroll::after, .soon::before { animation: none; }
+    .ticker-inner, .badge svg, .seq-row i.on, .hero-scroll::after, .soon::before, .foot-name::after { animation: none; }
   }
 </style>
 </head>
@@ -702,7 +719,7 @@
 </section>
 
 <footer>
-  <div class="foot-name" aria-hidden="true">GLAD WONG</div>
+  <div class="foot-name" data-text="GLAD WONG" aria-hidden="true">GLAD WONG</div>
   <div class="wrap foot-row">
     <span>Glad Wong Ee Ler</span>
     <span>Hand coded. No templates.</span>
@@ -952,6 +969,13 @@
       }
     });
     return function () { frames.classList.remove('is-h'); };
+  });
+
+  /* footer name fills with water as the page reaches the bottom */
+  var footName = document.querySelector('.foot-name');
+  gsap.fromTo(footName, { '--y': function () { return (footName.offsetHeight + 4) + 'px'; } }, {
+    '--y': '-24px', ease: 'none',
+    scrollTrigger: { trigger: 'footer', start: 'top 95%', end: function () { return ScrollTrigger.maxScroll(window) - 30; }, scrub: true, invalidateOnRefresh: true }
   });
 
   /* scroll progress bar */
