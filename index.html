@@ -404,11 +404,11 @@
     nav { gap: 0.6rem; }
     /* GW flips over like a card to show GLAD WONG on the back, and flips back when the menu closes */
     .nav-logo { position: relative; display: inline-block; margin-right: 0.4rem; white-space: nowrap; perspective: 200px;
-      width: var(--gw-w, 2.6em); transition: width 0.45s cubic-bezier(.65,0,.35,1) 0.3s; }
-    .menu-open .nav-logo { width: var(--full-w, 6.5em); transition: width 0.55s cubic-bezier(.65,0,.35,1) 0.1s; }
+      width: var(--gw-w, 2.6em); transition: width 0.8s cubic-bezier(.45,0,.25,1) 0.55s; }
+    .menu-open .nav-logo { width: var(--full-w, 6.5em); transition: width 0.8s cubic-bezier(.45,0,.25,1) 0.35s; }
     .nl-gw, .nl-full { display: inline-block; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-      transform-origin: 50% 50% -10px; transition: transform 0.5s cubic-bezier(.65,0,.35,1); }
-    .menu-open .nl-gw, .menu-open .nl-full { transition: transform 0.6s cubic-bezier(.65,0,.35,1) 0.1s; }
+      transform-origin: 50% 50% -10px; transition: transform 0.8s cubic-bezier(.45,0,.25,1); }
+    .menu-open .nl-gw, .menu-open .nl-full { transition: transform 0.8s cubic-bezier(.45,0,.25,1) 0.4s; }
     .nl-full { position: absolute; left: 0; top: 0; transform: rotateX(-90deg); }
     .menu-open .nl-gw { transform: rotateX(90deg); }
     .menu-open .nl-full { transform: none; }
@@ -422,17 +422,12 @@
     .nav-menu i { display: block; width: 15px; height: 1.5px; background: var(--ink); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); }
     .menu-open .nav-menu i:first-child { transform: translateY(3.25px) rotate(45deg); }
     .menu-open .nav-menu i:last-child { transform: translateY(-3.25px) rotate(-45deg); }
-    /* seesaw: as GW flips up into the name, Contact flips down out of the bar, then folds away.
-       Closing reverses it, with Contact returning only once the name has flipped back to GW. */
+    /* dissolve: Contact gently fades out and its space eases closed before GW flips to the name.
+       Closing reverses it, slowly, with Contact fading back only after the name is GW again. */
     .nav-cta { max-width: 12rem; white-space: nowrap; overflow: hidden;
-      backface-visibility: hidden; -webkit-backface-visibility: hidden; transform-origin: 50% 50% -10px;
-      transform: perspective(200px) rotateX(0deg);
-      transition: transform 0.5s cubic-bezier(.65,0,.35,1) 0.55s, max-width 0.4s cubic-bezier(.65,0,.35,1) 0.45s,
-        padding 0.4s cubic-bezier(.65,0,.35,1) 0.45s, margin 0.4s cubic-bezier(.65,0,.35,1) 0.45s; }
-    .menu-open .nav-cta { pointer-events: none; max-width: 0; padding-left: 0; padding-right: 0; margin-left: -0.6rem; border-width: 0;
-      transform: perspective(200px) rotateX(-90deg);
-      transition: transform 0.5s cubic-bezier(.65,0,.35,1) 0.1s, max-width 0.4s cubic-bezier(.65,0,.35,1) 0.25s,
-        padding 0.4s cubic-bezier(.65,0,.35,1) 0.25s, margin 0.4s cubic-bezier(.65,0,.35,1) 0.25s; }
+      transition: opacity 0.9s ease 1.15s, max-width 0.8s cubic-bezier(.45,0,.25,1) 0.9s, padding 0.8s cubic-bezier(.45,0,.25,1) 0.9s, margin 0.8s cubic-bezier(.45,0,.25,1) 0.9s; }
+    .menu-open .nav-cta { opacity: 0; pointer-events: none; max-width: 0; padding-left: 0; padding-right: 0; margin-left: -0.6rem; border-width: 0;
+      transition: opacity 0.7s ease, max-width 0.8s cubic-bezier(.45,0,.25,1) 0.35s, padding 0.8s cubic-bezier(.45,0,.25,1) 0.35s, margin 0.8s cubic-bezier(.45,0,.25,1) 0.35s; }
     .mnav {
       display: flex; flex-direction: column; position: fixed; inset: 0; z-index: 790;
       padding: 6.5rem 1.5rem 2rem; overflow-y: auto;
