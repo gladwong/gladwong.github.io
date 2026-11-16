@@ -396,6 +396,78 @@
   .nav-links a::after { display: none; }
   .nav-links a:hover, .nav-links a.is-active { background: rgba(237,234,228,0.13); }
   .nav-cta { border-radius: 999px; padding: 0.7rem 1.5rem; }
+  .nl-gw { display: none; }
+  .nav-menu, .mnav { display: none; }
+
+  /* ── PHONE MENU: full screen panel; the pill logo opens from GW to GLAD WONG ── */
+  @media (max-width: 900px) {
+    nav { gap: 0.6rem; }
+    /* GW flips over like a card to show GLAD WONG on the back, and flips back when the menu closes */
+    .nav-logo { position: relative; display: inline-block; margin-right: 0.4rem; white-space: nowrap; perspective: 200px;
+      width: var(--gw-w, 2.6em); transition: width 0.45s cubic-bezier(.65,0,.35,1) 0.3s; }
+    .menu-open .nav-logo { width: var(--full-w, 6.5em); transition: width 0.55s cubic-bezier(.65,0,.35,1) 0.1s; }
+    .nl-gw, .nl-full { display: inline-block; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      transform-origin: 50% 50% -10px; transition: transform 0.5s cubic-bezier(.65,0,.35,1); }
+    .menu-open .nl-gw, .menu-open .nl-full { transition: transform 0.6s cubic-bezier(.65,0,.35,1) 0.1s; }
+    .nl-full { position: absolute; left: 0; top: 0; transform: rotateX(-90deg); }
+    .menu-open .nl-gw { transform: rotateX(90deg); }
+    .menu-open .nl-full { transform: none; }
+    .nav-menu:focus { outline: none; }
+    .nav-menu:focus-visible { border-color: var(--ink); }
+    .nav-menu {
+      display: inline-flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+      flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line);
+      background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
+    .nav-menu i { display: block; width: 15px; height: 1.5px; background: var(--ink); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); }
+    .menu-open .nav-menu i:first-child { transform: translateY(3.25px) rotate(45deg); }
+    .menu-open .nav-menu i:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+    /* seesaw: as GW flips up into the name, Contact flips down out of the bar, then folds away.
+       Closing reverses it, with Contact returning only once the name has flipped back to GW. */
+    .nav-cta { max-width: 12rem; white-space: nowrap; overflow: hidden;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden; transform-origin: 50% 50% -10px;
+      transform: perspective(200px) rotateX(0deg);
+      transition: transform 0.5s cubic-bezier(.65,0,.35,1) 0.55s, max-width 0.4s cubic-bezier(.65,0,.35,1) 0.45s,
+        padding 0.4s cubic-bezier(.65,0,.35,1) 0.45s, margin 0.4s cubic-bezier(.65,0,.35,1) 0.45s; }
+    .menu-open .nav-cta { pointer-events: none; max-width: 0; padding-left: 0; padding-right: 0; margin-left: -0.6rem; border-width: 0;
+      transform: perspective(200px) rotateX(-90deg);
+      transition: transform 0.5s cubic-bezier(.65,0,.35,1) 0.1s, max-width 0.4s cubic-bezier(.65,0,.35,1) 0.25s,
+        padding 0.4s cubic-bezier(.65,0,.35,1) 0.25s, margin 0.4s cubic-bezier(.65,0,.35,1) 0.25s; }
+    .mnav {
+      display: flex; flex-direction: column; position: fixed; inset: 0; z-index: 790;
+      padding: 6.5rem 1.5rem 2rem; overflow-y: auto;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle, rgba(237,234,228,0.2) 1px, transparent 1.6px);
+      background-size: 24px 24px;
+      clip-path: inset(0 0 100% 0); visibility: hidden;
+      transition: clip-path 0.7s cubic-bezier(.76,0,.24,1), visibility 0s 0.7s;
+    }
+    .menu-open .mnav { clip-path: inset(0); visibility: visible; transition: clip-path 0.7s cubic-bezier(.76,0,.24,1), visibility 0s; }
+    .mnav-eyebrow { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--dim); margin-bottom: 1rem; }
+    .mnav-list { list-style: none; }
+    .mnav-list li { overflow: hidden; border-bottom: 1px solid var(--faint); }
+    .mnav-list a {
+      display: flex; align-items: flex-start; gap: 0.9rem; text-decoration: none;
+      font-family: var(--display); font-size: clamp(3rem, 15vw, 4.6rem); line-height: 1; padding: 0.55rem 0 0.35rem;
+      color: rgba(237,234,228,0.5); transform: translateY(105%); transition: transform 0.7s cubic-bezier(.2,.7,.2,1), color 0.3s;
+    }
+    .mnav-list a small { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.14em; padding-top: 0.6em; }
+    .mnav-list a.is-active { color: var(--ink); }
+    .mnav-list a:active, .mnav-social a:active { color: var(--accent); }
+    @media (hover: hover) { .mnav-list a:hover, .mnav-social a:hover { color: var(--accent); } }
+    .menu-open .mnav-list a { transform: none; }
+    .menu-open .mnav-list li:nth-child(1) a { transition-delay: 0.25s; }
+    .menu-open .mnav-list li:nth-child(2) a { transition-delay: 0.31s; }
+    .menu-open .mnav-list li:nth-child(3) a { transition-delay: 0.37s; }
+    .menu-open .mnav-list li:nth-child(4) a { transition-delay: 0.43s; }
+    .menu-open .mnav-list li:nth-child(5) a { transition-delay: 0.49s; }
+    .mnav-social { margin-top: auto; padding-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem;
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      opacity: 0; transition: opacity 0.5s; }
+    .menu-open .mnav-social { opacity: 1; transition-delay: 0.5s; }
+    .mnav-social a { text-decoration: none; color: var(--dim); }
+    html.menu-open, html.menu-open body { overflow: hidden; }
+  }
 
   /* ── VIDEO: any frame with data-video gets a clip layered over its photo ── */
   .ph video, .reel-frame video {
@@ -496,7 +568,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#top">Glad Wong</a>
+  <a class="nav-logo" href="#top" aria-label="Glad Wong, back to top"><span class="nl-gw" aria-hidden="true">GW</span><span class="nl-full">Glad Wong</span></a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#life">Off the clock</a>
@@ -504,7 +576,24 @@
     <a href="#work">By day</a>
   </div>
   <a href="#contact" class="btn btn--solid nav-cta">Contact</a>
+  <button class="nav-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button>
 </nav>
+<div class="mnav" id="mnav" aria-hidden="true">
+  <p class="mnav-eyebrow">Where to?</p>
+  <ol class="mnav-list">
+    <li><a href="#about"><small>01</small>About</a></li>
+    <li><a href="#life"><small>02</small>Off the clock</a></li>
+    <li><a href="#drums"><small>03</small>Drums</a></li>
+    <li><a href="#work"><small>04</small>By day</a></li>
+    <li><a href="#contact"><small>05</small>Contact</a></li>
+  </ol>
+  <div class="mnav-social">
+    <a href="https://www.instagram.com/gladw_drums/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://linkedin.com/in/gladwong" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://wa.me/15042517264" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="mailto:gladw.business@gmail.com">Email</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero" id="top">
@@ -558,7 +647,7 @@
       <div>
         <h2 class="h2" data-split>Malaysian born. <em>US trained.</em></h2>
         <!-- EDIT: bio -->
-        <p class="body" data-fade style="margin-top:2.2rem">I grew up in Penang, went to college on a mountain in Georgia, spent a year in healthcare analytics in Chattanooga, then went back to Malaysia for my MBA at Putra Business School. These days I'm based between New Orleans and Penang.</p>
+        <p class="body" data-fade style="margin-top:2.2rem">I grew up in Penang, went to Covenant College on Lookout Mountain, Georgia, spent a year in healthcare analytics in Chattanooga, then went back to Malaysia for my MBA at Putra Business School. These days I'm based between New Orleans and Penang.</p>
         <p class="body" data-fade>I like work where the answer is hiding somewhere in the data and somebody has to go find it. I also like things that only reward you for showing up every day, which probably explains the drums, the gym, and the planted tanks.</p>
         <p class="body" data-fade>I speak English, Mandarin, and Malay, plus basic Hokkien and Cantonese.</p>
       </div>
@@ -590,7 +679,7 @@
         <p class="life-n">01 / Music</p>
         <h3 class="life-title" data-split>Rhythm is how I think.</h3>
         <!-- EDIT: music -->
-        <p class="body" data-fade>I've played drums for 16 years and hold Grade 8 from Rockschool. At Covenant I spent four years in the drum corps and played on the chapel worship team. On Sunday nights I led worship for my hall on guitar and cajon.</p>
+        <p class="body" data-fade>I've played drums for 16 years and hold Grade 8 from Rockschool. For four years I played in the drum corps and served on the chapel worship team at Covenant College. On Sunday nights I led worship for my hall on guitar and cajon.</p>
         <p class="body" data-fade>Guitar came later and it's quieter. Different discipline, same habit of coming back to it every day.</p>
         <ul class="facts" data-stagger>
           <li><span>Rockschool drums</span><span>Grade 8</span></li>
@@ -703,7 +792,7 @@
         <!-- EDIT: drums intro -->
         <p class="body" data-fade style="margin-top:2.2rem">I picked up my first pair of sticks in Penang when I was eight and never really put them down. Drums are where I go to switch off: a good groove, a metronome, and an hour that disappears.</p>
 
-        <!-- Groove machine: recorded drum hits from audio/ (public domain), with a synthesised fallback -->
+        <!-- Groove machine: drum sounds synthesised in the browser with Web Audio -->
         <div class="seq" data-fade>
           <div class="seq-bar">
             <button type="button" class="seq-play" aria-pressed="false">Play</button>
@@ -817,6 +906,33 @@
   var nav = document.querySelector('nav');
   var hero = document.querySelector('.hero');
 
+  /* phone menu: the button opens a full screen panel; tapping a section, Escape or the button closes it */
+  (function () {
+    var btn = document.querySelector('.nav-menu'), panel = document.getElementById('mnav'), root = document.documentElement;
+    if (!btn || !panel) return;
+    /* note how wide GW and the full name are, so the logo can ease between the two */
+    var logo = nav.querySelector('.nav-logo'), gwEl = nav.querySelector('.nl-gw'), fullEl = nav.querySelector('.nl-full');
+    function sizeLogo() {
+      if (!logo || !gwEl || !fullEl) return;
+      logo.style.setProperty('--gw-w', Math.ceil(gwEl.offsetWidth) + 'px');
+      logo.style.setProperty('--full-w', Math.ceil(fullEl.offsetWidth) + 'px');
+    }
+    sizeLogo();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeLogo);
+    window.matchMedia('(max-width: 900px)').addEventListener('change', sizeLogo);
+    function set(open) {
+      root.classList.toggle('menu-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    }
+    btn.addEventListener('click', function () { set(!root.classList.contains('menu-open')); });
+    panel.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    nav.querySelector('.nav-logo').addEventListener('click', function () { set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    window.matchMedia('(max-width: 900px)').addEventListener('change', function (m) { if (!m.matches) set(false); });
+  })();
+
   /* groove machine: 16 steps per drum, sounds synthesised with Web Audio */
   (function () {
     var box = document.querySelector('.seq');
@@ -871,21 +987,11 @@
         try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
         ctx = new AC();
         master = ctx.createGain(); master.gain.value = 0.8; master.connect(ctx.destination);
-        loadSamples();
         noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
         var d = noise.getChannelData(0);
         for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
       }
       if (ctx.state === 'suspended') ctx.resume();
-    }
-    /* recorded drum hits (public domain SM Drums kit, see audio/CREDITS.txt) */
-    var samples = {}, LEVEL = { kick: 1, snare: 0.9, hat: 0.55 };
-    function loadSamples() {
-      ['kick', 'snare', 'hat'].forEach(function (name) {
-        fetch('audio/' + name + '.mp3').then(function (r) { return r.arrayBuffer(); }).then(function (buf) {
-          return new Promise(function (res, rej) { ctx.decodeAudioData(buf, res, rej); });
-        }).then(function (decoded) { samples[name] = decoded; }).catch(function () {});
-      });
     }
     function env(g, t, peak, decay) {
       g.gain.setValueAtTime(0.0001, t);
@@ -900,13 +1006,6 @@
     }
     function sound(voice, t) {
       if (!ctx) return;
-      if (samples[voice]) {
-        var s = ctx.createBufferSource(), sg = ctx.createGain();
-        s.buffer = samples[voice]; sg.gain.value = LEVEL[voice];
-        s.connect(sg); sg.connect(master); s.start(t);
-        return;
-      }
-      /* fallback while the recordings load, or if they fail: synthesised hits */
       if (voice === 'kick') {
         var o = ctx.createOscillator(), g = ctx.createGain();
         o.type = 'sine';
@@ -1111,7 +1210,7 @@
   gsap.registerPlugin(ScrollTrigger);
 
   /* nav pill highlights the section on screen */
-  gsap.utils.toArray('.nav-links a').forEach(function (link) {
+  gsap.utils.toArray('.nav-links a, .mnav-list a').forEach(function (link) {
     ScrollTrigger.create({
       trigger: document.querySelector(link.getAttribute('href')), start: 'top 50%', end: 'bottom 50%',
       onToggle: function (self) { link.classList.toggle('is-active', self.isActive); }
