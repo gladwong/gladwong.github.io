@@ -554,8 +554,11 @@
   @media (max-width: 900px) and (max-aspect-ratio: 3/4) {
     .hero-top { display: none; }
     .hero { justify-content: flex-end; }
-    /* phones: the stacked name sits fully above the head */
-    .hero { --portrait-top: 48vh; --portrait-h: 52vh; --name-size: min(17.8vh, 40vw); --name-top: 13vh; --name-shift: 0; }
+    /* phones: the stacked name sits fully above the head, the photo starts right under WONG,
+       and the button and details sit below the photo rather than on top of it */
+    .hero { --name-top: 13vh; --name-size: min(17.8vh, 40vw); --name-shift: 0;
+      --portrait-top: calc(var(--name-top) + var(--name-size) * 1.45); --portrait-h: 62vh; /* hair tucks behind the middle of WONG */
+      min-height: calc(var(--portrait-top) + var(--portrait-h) + 12rem); }
     .hero-name { display: block; white-space: normal; text-align: center; }
     .hero-name .hw, .hero-name .hw:first-child, .hero-name .hw + .hw { display: block; justify-self: center; }
     .hero-name .hw + .hw { margin-left: 0; }
@@ -1342,7 +1345,8 @@
   screenProbe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;width:0;height:100vh;height:100svh';
   hero.appendChild(heroProbe); hero.appendChild(screenProbe);
   function buildHero() {
-    var pin = heroProbe.offsetHeight >= screenProbe.offsetHeight - 4;
+    /* hold the hero in place only when it is exactly one screen tall; shorter or taller heroes just scroll */
+    var pin = Math.abs(hero.offsetHeight - screenProbe.offsetHeight) <= 4;
     if (pin === heroPinned) return;
     heroPinned = pin;
     if (heroTL) {
