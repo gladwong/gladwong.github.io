@@ -5,9 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glad Wong | Drummer, Bodybuilder, Aquascaper</title>
 <meta name="description" content="Glad Wong, off the clock. Drummer of 16 years, bodybuilder, aquascaper and badminton player, based between New Orleans and Penang.">
+<!-- link previews (WhatsApp, iMessage, LinkedIn, X) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gladwong.github.io/">
+<meta property="og:title" content="Glad Wong">
+<meta property="og:description" content="Strategy by day. Lifting by night. Drummer, bodybuilder, aquascaper and badminton player.">
+<meta property="og:image" content="https://gladwong.github.io/images/web/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Glad Wong smiling, with GLAD WONG in large letters on either side">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" href="images/icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   img { image-orientation: from-image; display: block; max-width: 100%; }
@@ -24,7 +37,6 @@
     --serif: 'Cormorant Garamond', serif;
   }
 
-  html { scroll-behavior: smooth; }
   body {
     background-color: var(--bg);
     color: var(--ink);
@@ -73,7 +85,7 @@
   .tlink:hover { border-color: var(--accent); color: var(--accent); }
 
   /* photo frame: grey until it reaches the middle of the screen, then colour */
-  .ph { position: relative; overflow: hidden; background: #161615; }
+  .ph { position: relative; overflow: hidden; background: #161615; isolation: isolate; } /* keeps each photo's reveal cover inside that photo, never over a photo layered on top */
   .ph img {
     width: 100%; height: 100%; object-fit: cover;
     filter: grayscale(1) brightness(0.85);
@@ -135,32 +147,41 @@
   /* ── HERO ── */
   .hero {
     position: relative; overflow: hidden; isolation: isolate;
-    min-height: 100vh; min-height: 100svh;
+    /* full screen, but on narrow screens (where the photo scales down) it ends just below the photo */
+    min-height: min(100vh, calc(var(--portrait-top) + var(--portrait-h) + 7rem)); min-height: min(100svh, calc(var(--portrait-top) + var(--portrait-h) + 7rem));
     display: flex; flex-direction: column; justify-content: space-between;
     padding: 6.5rem 3rem 2rem;
+    /* hero tuning, all measured from the top of the screen: where the photo starts and how tall it is,
+       how big the name is and where its top edge sits (eye level, like the reference) */
+    --portrait-top: 13vh; --portrait-h: min(87vh, 54vw); --name-size: min(28.5vh, 17.8vw);
+    --name-top: calc(var(--portrait-top) + var(--portrait-h) * 0.25); /* eye level */
+    --name-gap: calc(var(--portrait-h) * 0.38);                       /* the head's width plus a little room */
+    --name-shift: -0.16;  /* WONG is wider than GLAD, so the gap sits this many letter-heights left of centre */
   }
   .hero-top { position: relative; z-index: 4; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
   .hero-eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; }
   .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--ink); }
   .hero-tag { font-family: var(--serif); font-size: 22px; font-style: italic; line-height: 1.35; max-width: 300px; text-align: right; }
   /* the name sits across the chest so it never crosses the face */
-  .hero-layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-top: 36vh; pointer-events: none; }
+  .hero-layer { position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: center; pointer-events: none; }
   .hero-layer--solid { z-index: 1; }
-  .hero-layer--outline { z-index: 3; }
-  .hero-name { font-family: var(--display); font-weight: 400; font-size: clamp(5rem, min(24.5vw, 40vh), 34rem); line-height: 0.82; letter-spacing: 0.01em; white-space: nowrap; color: var(--ink); }
+  .hero-layer--outline { z-index: 3; display: none; } /* the name now sits fully behind the cutout */
+  .hero-name { font-family: 'Anton', var(--display); font-weight: 400; font-size: var(--name-size); margin-top: calc(var(--name-top) - 0.045em); line-height: 0.9; letter-spacing: 0.01em; white-space: nowrap; color: var(--ink); }
   .hero-name .hw { display: inline-block; overflow: hidden; vertical-align: top; padding-top: 0.04em; }
-  .hero-name .hw + .hw { margin-left: 0.2em; }
+  /* GLAD and WONG sit either side of a gap as wide as the head, so neither word is ever covered */
+  .hero-name { display: grid; grid-template-columns: auto var(--name-gap) auto; justify-content: center; width: 100%; }
+  .hero-name .hw:first-child { grid-column: 1; justify-self: end; }
+  .hero-name .hw + .hw { grid-column: 3; justify-self: start; }
   .hero-name .hw > span { display: inline-block; }
   .hero-layer--outline .hero-name { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
   .hero-portrait {
-    position: absolute; left: 0; right: 0; bottom: 0; margin: 0 auto;
-    height: 92%; aspect-ratio: 1100 / 1351; z-index: 2; pointer-events: none; transform-origin: 50% 35%;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 62%, transparent 97%), linear-gradient(to right, transparent 3%, #000 30%, #000 70%, transparent 97%);
-    -webkit-mask-composite: source-in;
-    mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 62%, transparent 97%), linear-gradient(to right, transparent 3%, #000 30%, #000 70%, transparent 97%);
-    mask-composite: intersect;
+    position: absolute; left: 50%; top: var(--portrait-top); margin-left: calc(var(--portrait-h) * -0.6214 + var(--name-shift) * var(--name-size)); /* the head sits in the gap between the words */
+    height: var(--portrait-h); aspect-ratio: 1040 / 1064; z-index: 2; pointer-events: none; transform-origin: 50% 35%;
+    /* the photo is a cutout, so the name shows around it; only the bottom fades into the page */
+    -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
   }
-  .hero-portrait img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.15) brightness(0.8); }
+  .hero-portrait img { width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; filter: grayscale(1) contrast(1.15) brightness(0.8); }
   .hero-foot { position: relative; z-index: 4; display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 2rem; }
   .hero-foot .btn { justify-self: start; }
   .hero-scroll { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 0.7rem; }
@@ -258,6 +279,11 @@
   .life-head { margin-bottom: 7rem; }
   .life-row { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; margin-bottom: 11rem; }
   .life-row:last-child { margin-bottom: 0; }
+  /* bodybuilding: a third, square photo tucked into the top right of the collage */
+  .bb-media-photo { position: absolute; right: 0; top: -3rem; width: 34%; aspect-ratio: 1; border: 6px solid var(--bg); z-index: 2;
+    --gi-zoom: 2.1; --gi-x: 57%; --gi-y: 54%; }
+  /* zoom in on Glad: the focus point is where he stands, and the photo scales around it */
+  .bb-media-photo img { object-position: var(--gi-x) var(--gi-y); transform-origin: var(--gi-x) var(--gi-y); scale: var(--gi-zoom); }
   .life-row:nth-child(odd) .life-media { order: 2; }
   .life-media { position: relative; }
   .life-media .ph--main { aspect-ratio: 4 / 5; width: 82%; }
@@ -528,11 +554,11 @@
   @media (max-width: 900px) and (max-aspect-ratio: 3/4) {
     .hero-top { display: none; }
     .hero { justify-content: flex-end; }
-    .hero-layer { align-items: flex-start; padding-top: 14vh; }
-    .hero-name { font-size: min(47vw, 24vh); white-space: normal; text-align: center; }
-    .hero-name .hw { display: block; }
+    /* phones: the stacked name sits fully above the head */
+    .hero { --portrait-top: 48vh; --portrait-h: 52vh; --name-size: min(17.8vh, 40vw); --name-top: 13vh; --name-shift: 0; }
+    .hero-name { display: block; white-space: normal; text-align: center; }
+    .hero-name .hw, .hero-name .hw:first-child, .hero-name .hw + .hw { display: block; justify-self: center; }
     .hero-name .hw + .hw { margin-left: 0; }
-    .hero-portrait { height: 54vh; bottom: 5%; left: 50%; right: auto; margin: 0 0 0 -22vh; }
     .hero-foot { grid-template-columns: 1fr; gap: 1.25rem; }
     .hero-chips { align-items: flex-start; text-align: left; }
   }
@@ -594,14 +620,14 @@
 <header class="hero" id="top">
   <div class="hero-top">
     <p class="hero-eyebrow">Drummer · Bodybuilder · Aquascaper</p>
-    <p class="hero-tag">Strategy by day. Drummer since I was eight.</p>
+    <p class="hero-tag">Strategy by day. Lifting by night.</p>
   </div>
 
   <div class="hero-layer hero-layer--solid">
     <h1 class="hero-name" aria-label="Glad Wong"><span class="hw"><span>GLAD</span></span><span class="hw"><span>WONG</span></span></h1>
   </div>
   <!-- REPLACE: images/hero-portrait-alt.jpg is the second option (looking off camera) -->
-  <div class="hero-portrait"><img src="images/hero-portrait.jpg?v=4" alt="Portrait of Glad Wong" width="1100" height="1351"></div>
+  <div class="hero-portrait"><img src="images/web/hero-cutout.webp?v=2" alt="Portrait of Glad Wong" width="1040" height="1064"></div>
   <div class="hero-layer hero-layer--outline" aria-hidden="true">
     <div class="hero-name"><span class="hw"><span>GLAD</span></span><span class="hw"><span>WONG</span></span></div>
   </div>
@@ -706,8 +732,9 @@
       </div>
     </div>
 
-    <div class="life-row">
+    <div class="life-row life-row--gym">
       <div class="life-media">
+        <div class="ph bb-media-photo" data-wipe><img src="images/web/gi-full.jpg?v=2" alt="Glad in a gi on the mats" loading="lazy" decoding="async"></div>
         <div class="ph ph--main" data-wipe><img src="images/web/gym.jpg" alt="Glad flexing in dramatic light at the gym" loading="lazy" decoding="async"></div>
         <div class="ph ph--side" data-speed="0.6" style="aspect-ratio:16/9;width:58%" data-video="videos/gym.mp4?v=3"><img src="images/web/v-gym.jpg?v=3" alt="Glad pressing dumbbells on a bench" loading="lazy" decoding="async"></div>
       </div>
@@ -717,6 +744,7 @@
         <!-- EDIT: bodybuilding -->
         <p class="body" data-fade>Structured programming, tracked numbers, slow progress. It's the same loop as analytics, except I'm the dataset.</p>
         <p class="body" data-fade>And no, I don't train in the morning.</p>
+        <p class="body" data-fade>These days I'm also on the mats.</p>
       </div>
     </div>
 
@@ -729,7 +757,7 @@
         <p class="life-n">04 / Badminton</p>
         <h3 class="life-title" data-split>Fast, tactical, and a little loud.</h3>
         <!-- EDIT: badminton -->
-        <p class="body" data-fade>I play at Chattanooga Badminton Club whenever I'm in town and have represented the state. At Covenant I co-founded the badminton club and served as vice president.</p>
+        <p class="body" data-fade>I play at Chattanooga Badminton Club whenever I'm in town and have represented the city. At Covenant I co-founded the badminton club and served as vice president.</p>
         <ul class="facts" data-stagger>
           <li><span>Member, Chattanooga Badminton Club</span><span>Since 2023</span></li>
           <li><span>Vice President, Covenant Badminton Club</span><span>2022 to 2024</span></li>
@@ -1196,6 +1224,22 @@
   });
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* in-page links glide to their section. Done here rather than with CSS smooth scrolling, which
+     makes the scroll animations measure the page wrongly (late colour, late reveals) */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var id = a.getAttribute('href').slice(1), target = id ? document.getElementById(id) : document.body;
+    if (!target) return;
+    e.preventDefault();
+    if (id) history.pushState(null, '', '#' + id); else history.pushState(null, '', location.pathname);
+    if (id === 'top' || !id) window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    else target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  });
+  /* every visit opens at the top (or at the linked section) with all animations measured fresh,
+     instead of the browser restoring an old scroll position before anything is ready */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (reduceMotion || !window.gsap || !window.ScrollTrigger) {
     document.querySelectorAll('.ph').forEach(function (p) { p.classList.add('is-live', 'is-open'); });
     nav.classList.add('nav--solid');
@@ -1203,6 +1247,7 @@
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   /* nav pill highlights the section on screen */
   gsap.utils.toArray('.nav-links a, .mnav-list a').forEach(function (link) {
@@ -1286,12 +1331,41 @@
     .from('.hero-portrait img', { opacity: 0, scale: 1.12, duration: 1.8, ease: 'power2.out' }, 2.65)
     .from('.hero-top > *, .hero-foot > *', { opacity: 0, y: 20, duration: 0.8, stagger: 0.08 }, 3.25);
 
-  gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: '+=90%', scrub: true, pin: true } })
-    .to('.hero-name .hw:first-child', { xPercent: -80, ease: 'none', duration: 1 }, 0)
-    .to('.hero-name .hw:last-child', { xPercent: 80, ease: 'none', duration: 1 }, 0)
-    .to('.hero-name', { opacity: 0, ease: 'none', duration: 0.55 }, 0)
-    .to('.hero-portrait', { scale: 1.22, ease: 'none', duration: 1 }, 0)
-    .to('.hero-top, .hero-foot', { opacity: 0, ease: 'none', duration: 0.3 }, 0);
+  /* the hero only holds in place when it fills the screen; on narrow screens it is shorter than the
+     window, and holding it would leave an empty band below, so it just plays out as it scrolls away */
+  var heroTL = null, heroPinned = null;
+  /* compare the hero's natural height with a full screen, both measured in CSS units that do not
+     change while a phone's address bar slides in and out */
+  var heroProbe = document.createElement('div');
+  heroProbe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;width:0;height:calc(var(--portrait-top) + var(--portrait-h) + 7rem)';
+  var screenProbe = document.createElement('div');
+  screenProbe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;width:0;height:100vh;height:100svh';
+  hero.appendChild(heroProbe); hero.appendChild(screenProbe);
+  function buildHero() {
+    var pin = heroProbe.offsetHeight >= screenProbe.offsetHeight - 4;
+    if (pin === heroPinned) return;
+    heroPinned = pin;
+    if (heroTL) {
+      heroTL.scrollTrigger.kill(true); heroTL.progress(0).kill(); heroTL = null;
+      gsap.set(['.hero-name .hw', '.hero-name', '.hero-portrait', '.hero-top', '.hero-foot'], { clearProps: 'transform,opacity' });
+    }
+    /* shorter heroes just scroll away as they are, with nothing fading out on screen */
+    if (pin) heroTL = gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: '+=90%', scrub: true, pin: true } })
+      .to('.hero-name .hw:first-child', { xPercent: -80, ease: 'none', duration: 1 }, 0)
+      .to('.hero-name .hw:last-child', { xPercent: 80, ease: 'none', duration: 1 }, 0)
+      .to('.hero-name', { opacity: 0, ease: 'none', duration: 0.55 }, 0)
+      .to('.hero-portrait', { scale: 1.22, ease: 'none', duration: 1 }, 0)
+      .to('.hero-top, .hero-foot', { opacity: 0, ease: 'none', duration: 0.3 }, 0);
+    ScrollTrigger.refresh();
+  }
+  buildHero();
+  var heroResize = 0;
+  var heroWidth = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === heroWidth) return;
+    heroWidth = window.innerWidth;
+    clearTimeout(heroResize); heroResize = setTimeout(buildHero, 250);
+  });
 
   /* ── shared system: every section uses the same five behaviours ── */
 
@@ -1327,7 +1401,8 @@
 
   /* 4. photos: a cover slides away, and they turn from grey to colour at mid screen */
   gsap.utils.toArray('.ph').forEach(function (ph) {
-    ScrollTrigger.create({ trigger: ph, start: 'top 72%', end: 'bottom 22%', toggleClass: 'is-live' });
+    /* gallery photos are handled with the gallery below, since on desktop they slide sideways */
+    if (!ph.closest('.frames')) ScrollTrigger.create({ trigger: ph, start: 'top 72%', end: 'bottom 22%', toggleClass: 'is-live' });
     if (ph.hasAttribute('data-wipe')) {
       ScrollTrigger.create({ trigger: ph, start: 'top 88%', once: true, onEnter: function () { ph.classList.add('is-open'); } });
     }
@@ -1430,14 +1505,24 @@
   gsap.matchMedia().add('(min-width: 901px)', function () {
     frames.classList.add('is-h');
     var distance = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
-    gsap.to(track, {
+    var slide = gsap.to(track, {
       x: function () { return -distance(); }, ease: 'none',
       scrollTrigger: {
         trigger: frames, start: 'top top', end: function () { return '+=' + distance(); },
         pin: true, scrub: true, invalidateOnRefresh: true
       }
     });
+    /* each photo turns to colour while it is in the middle of the screen during the sideways slide */
+    track.querySelectorAll('.ph').forEach(function (ph) {
+      ScrollTrigger.create({ trigger: ph, containerAnimation: slide, start: 'left 80%', end: 'right 20%', toggleClass: 'is-live' });
+    });
     return function () { frames.classList.remove('is-h'); };
+  });
+  /* small screens: the gallery is a normal grid, so photos colour in as they scroll past */
+  gsap.matchMedia().add('(max-width: 900px)', function () {
+    track.querySelectorAll('.ph').forEach(function (ph) {
+      ScrollTrigger.create({ trigger: ph, start: 'top 72%', end: 'bottom 22%', toggleClass: 'is-live' });
+    });
   });
 
   /* scroll progress bar */
@@ -1445,7 +1530,17 @@
 
   ScrollTrigger.sort();
   ScrollTrigger.refresh();
-  window.addEventListener('load', function () { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
+  /* fonts and lazy photos arrive after this point and can nudge the layout, so re-measure
+     (batched) each time something finishes loading */
+  var remeasure = 0;
+  function refreshSoon() { clearTimeout(remeasure); remeasure = setTimeout(function () { ScrollTrigger.sort(); ScrollTrigger.refresh(); }, 150); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshSoon);
+  document.querySelectorAll('img').forEach(function (img) { if (!img.complete) img.addEventListener('load', refreshSoon, { once: true }); });
+  window.addEventListener('load', function () {
+    ScrollTrigger.sort(); ScrollTrigger.refresh();
+    var target = location.hash && document.getElementById(location.hash.slice(1));
+    if (target) target.scrollIntoView({ block: 'start' });
+  });
 })();
 </script>
 
